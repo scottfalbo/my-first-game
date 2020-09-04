@@ -30,8 +30,6 @@ window.addEventListener('keydown', function (event) {
 var heroLoc = [375, 275, 50, 50];
 // Variable used to render to canvas.
 var theHero;
-// Edges of the play field [top, right, bottom, left].
-var mapBorder = [0, 750, 550, 0];
 // Object to hold hero information.
 var theHeroObject = {
   name: 'Hero',
