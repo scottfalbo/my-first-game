@@ -1,0 +1,35 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: lightgray;
+  text-align: center;
+}
+
+header {
+  margin: 10px auto;
+}
+
+main {
+  background: white;
+  width: 960px;
+  height: 680px;
+  margin: 20px auto;
+}
+
+.play-field {
+  border: 1px solid black;
+  position: absolute;
+  width: 800px;
+  height: 600px;
+  left: 200px;
+  top: 80px;
+}
+#zone {
+  z-index: 0;
+  background: url(./../images/background.jpg);
+}
+#hero {
+  z-index: 1;
+}
