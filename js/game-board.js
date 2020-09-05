@@ -54,12 +54,18 @@ var zoneCanvas = document.getElementById('zone');
 var theZone = zoneCanvas.getContext('2d');
 var heroCanvas = document.getElementById('hero');
 var theHero = heroCanvas.getContext('2d');
-var mobsCanvas = document.getElementById('hero');
+var mobsCanvas = document.getElementById('baddies');
 var theMobs = mobsCanvas.getContext('2d');
-var itemsCanvas = document.getElementById('hero');
+var itemsCanvas = document.getElementById('items');
 var theItems = itemsCanvas.getContext('2d');
 
 // --------------------------------------------------------------
+// -------- Block Constructor ------------
+function BlockMaker(x, y){
+  this.x = x;
+  this.y = y;
+  blocks.push(this);
+}
 // ----------- Render Functions -------------------
 // Load the Hero to the screen.
 window.onload = function() {
@@ -67,14 +73,20 @@ window.onload = function() {
   renderAll();
 };
 function renderAll(){
+  renderHero();
   renderMobs();
   renderItems();
-  renderHero();
 }
 function renderZone(){
-  theZone.fillRect(100, 100, 400, 50);
-  theZone.fillRect(100, 400, 400, 50);
-  blocks = [[100,100,400,50], [100, 400, 400, 50]];
+  // for (var n = 100; n < 500; n += 50){
+  new BlockMaker(100, 100);
+  new BlockMaker(200, 200);
+  new BlockMaker(300, 300);
+  new BlockMaker(400, 400);
+  for (var i in blocks){
+    theZone.fillRect(blocks[i].x, blocks[i].y, 50, 50);
+  }
+  // }
 }
 function renderHero(){
   theHero.fillStyle = 'blue';
@@ -94,7 +106,9 @@ function renderItems(){
 function arrowInput(direction){
   theHero.clearRect(heroLoc[0], heroLoc[1], heroLoc[2], heroLoc[3]);
   if (direction === 'up' && heroLoc[1] !== mapBorder[0]){
-    heroLoc[1] -= 25;
+    // if (checkPathUp('up')){
+      heroLoc[1] -= 25;
+    // }
   } else if (direction === 'right' && heroLoc[0] < mapBorder[1]){
     heroLoc[0] += 25;
   } else if (direction === 'down' && heroLoc[1] < mapBorder[2]){
@@ -104,3 +118,50 @@ function arrowInput(direction){
   }
   renderAll();
 }
+
+// function checkPathUp(direction) {
+//   var checker = [];
+//   var overallCheck = [];
+//   for (var i in blocks){
+//     console.log(i);
+//     checker = [];
+//     if ((heroLoc[0] < (blocks[i].x + 50) && heroLoc[0] > (blocks[i].x -50))){
+//       checker.push(false);
+//     } else {
+//       checker.push(true);
+//     }
+//     if (heroLoc[1] < (blocks[i].y + 50) && heroLoc[1] > (blocks[i].y - 50)){
+//       checker.push(false);
+//     } else {
+//       checker.push(true);
+//     }
+//     overallCheck.push(checker);
+//     console.log(overallCheck);
+//   }
+//   for (var j in overallCheck){
+//     for (var k in overallCheck[j]){
+//       if (overallCheck[j][k] === false){
+//         return false;
+//       }
+//     }
+//   }
+//   return true;
+// }
+// // function checkPathDown(direction) {
+// //   var checker = [''];
+// //   for (var i in blocks){
+// //     console.log(i);
+// //     if ((heroLoc[0] < (blocks[i].x + 50) && heroLoc[0] > (blocks[i].x -50)) && (heroLoc[1] < (blocks[i].y + 75) && heroLoc[1] > (blocks[i].y -75)) ){
+// //       checker.push(false);
+// //     } else {
+// //       checker.push(true);
+// //     }
+// //     for (var j in checker){
+// //       if (checker[j] === false){
+// //         console.log(checker);
+// //         return false;
+// //       }
+// //     }
+// //   }
+// //   return true;
+// // }
