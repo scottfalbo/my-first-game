@@ -25,7 +25,7 @@ window.addEventListener('keydown', function (event) {
   event.preventDefault();
 }, true);
 
-// -------------- Global Variables --------------
+// -------------- GLOBAL VARIABLES --------------
 // Get the size of the play field and puts limits into mapBorder
 // mapBorder = [top, right, bottom, left];
 var mapBorder = [];
@@ -36,11 +36,15 @@ function zoneSize(){
   mapBorder = [0, (zoneWidth-50), (zoneHeight-50), 0]; //eslint-disable-line
 }
 zoneSize();
+
 // Hero coords (x, y, xFill, yFill).
 var heroLoc = [375, 275, 50, 50];
 
+// array to hold all of the impassable blocks on the map
+var blocks = [];
+
 // Object to hold hero information.
-var theHeroObject = {
+var theHeroObject = { //eslint-disable-line
   name: 'Hero',
   mapLoc: heroLoc,
   heroImage: ''
@@ -55,14 +59,36 @@ var theMobs = mobsCanvas.getContext('2d');
 var itemsCanvas = document.getElementById('hero');
 var theItems = itemsCanvas.getContext('2d');
 
-
+// --------------------------------------------------------------
+// ----------- Render Functions -------------------
 // Load the Hero to the screen.
 window.onload = function() {
   renderZone();
-  renderHero();
+  renderAll();
+};
+function renderAll(){
   renderMobs();
   renderItems();
-};
+  renderHero();
+}
+function renderZone(){
+  theZone.fillRect(100, 100, 400, 50);
+  theZone.fillRect(100, 400, 400, 50);
+  blocks = [[100,100,400,50], [100, 400, 400, 50]];
+}
+function renderHero(){
+  theHero.fillStyle = 'blue';
+  theHero.fillRect(heroLoc[0], heroLoc[1], heroLoc[2], heroLoc[3]);
+}
+function renderMobs(){
+  theMobs.fillStyle = 'red';
+  theMobs.fillRect(700, 300, 50, 50);
+  theMobs.fillRect(600, 500, 50, 50);
+}
+function renderItems(){
+  theItems.fillStyle = 'gold';
+  theItems.fillRect(0, 0, 50, 50);
+}
 
 // ------------------- Movement Functions ---------------------
 function arrowInput(direction){
@@ -77,27 +103,4 @@ function arrowInput(direction){
     heroLoc[0] -= 25;
   }
   renderAll();
-}
-
-function renderAll(){
-  renderHero();
-  renderMobs()
-  // renderZone();
-}
-function renderZone(){
-  theZone.fillRect(100, 100, 400, 50);
-  theZone.fillRect(100, 400, 400, 50);
-}
-function renderHero(){
-  theHero.fillStyle = 'blue';
-  theHero.fillRect(heroLoc[0], heroLoc[1], heroLoc[2], heroLoc[3]);
-}
-function renderMobs(){
-  theMobs.fillStyle = 'red';
-  theMobs.fillRect(700, 300, 50, 50);
-  theMobs.fillRect(600, 500, 50, 50);
-}
-function renderItems(){
-  theItems.fillStyle = 'gold';
-  theItems.fillRect(0, 0, 50, 50);
 }
