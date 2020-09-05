@@ -58,10 +58,10 @@ var theItems = itemsCanvas.getContext('2d');
 
 // Load the Hero to the screen.
 window.onload = function() {
-  theHero.fillStyle = 'green';
-  theHero.fillRect(heroLoc[0], heroLoc[1], heroLoc[2], heroLoc[3]);
-  theZone.fillRect(100, 100, 400, 50);
-  theZone.fillRect(100, 400, 400, 50);
+  renderZone();
+  renderHero();
+  renderMobs();
+  renderItems();
 };
 
 // ------------------- Movement Functions ---------------------
@@ -81,20 +81,23 @@ function arrowInput(direction){
 
 function renderAll(){
   renderHero();
+  renderMobs()
   // renderZone();
 }
 function renderZone(){
   theZone.fillRect(100, 100, 400, 50);
+  theZone.fillRect(100, 400, 400, 50);
 }
 function renderHero(){
+  theHero.fillStyle = 'blue';
   theHero.fillRect(heroLoc[0], heroLoc[1], heroLoc[2], heroLoc[3]);
 }
-
-// var zoneCanvas = document.getElementById('zone');
-
-// var tempBlocks = zoneCanvas.getContext('2d');
-
-// window.onload = function() {
-//   tempBlocks.fillStyle = 'green';
-//   tempBlocks.fillRect(100, 100, 400, 50);
-// };
+function renderMobs(){
+  theMobs.fillStyle = 'red';
+  theMobs.fillRect(700, 300, 50, 50);
+  theMobs.fillRect(600, 500, 50, 50);
+}
+function renderItems(){
+  theItems.fillStyle = 'gold';
+  theItems.fillRect(0, 0, 50, 50);
+}
