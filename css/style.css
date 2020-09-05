@@ -26,6 +26,9 @@ main {
   left: 200px;
   top: 80px;
 }
+canvas {
+  background-color: transparent;
+}
 #zone {
   z-index: 0;
   background: url(./../images/background.jpg);
