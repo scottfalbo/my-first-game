@@ -7,16 +7,16 @@ window.addEventListener('keydown', function (event) {
   }
   switch (event.key) {
   case 'ArrowDown':
-    arrowInput('down');
+    arrowInput(0, 25);
     break;
   case 'ArrowUp':
-    arrowInput('up');
+    arrowInput(0, -25);
     break;
   case 'ArrowLeft':
-    arrowInput('left');
+    arrowInput(-25, 0);
     break;
   case 'ArrowRight':
-    arrowInput('right');
+    arrowInput(25, 0);
     break;
   default:
     return; // Quit when this doesn't handle the key event.
@@ -64,6 +64,8 @@ var theItems = itemsCanvas.getContext('2d');
 function BlockMaker(x, y){
   this.x = x;
   this.y = y;
+  this.w = 50;
+  this.h = 50;
   blocks.push(this);
 }
 // ----------- Render Functions -------------------
@@ -84,7 +86,7 @@ function renderZone(){
   new BlockMaker(300, 300);
   new BlockMaker(400, 400);
   for (var i in blocks){
-    theZone.fillRect(blocks[i].x, blocks[i].y, 50, 50);
+    theZone.fillRect(blocks[i].x, blocks[i].y, blocks[i].w, blocks[i].h);
   }
 }
 function renderHero(){
@@ -102,55 +104,28 @@ function renderItems(){
 }
 
 // ------------------- Movement Functions ---------------------
-function arrowInput(direction){
-  theHero.clearRect(heroLoc[0], heroLoc[1], heroLoc[2], heroLoc[3]);
-  if (direction === 'up' && heroLoc[1] !== mapBorder[0]){
-    for (var i in blocks){
-      if ((heroLoc[0] === blocks[i].x || heroLoc[0] === (blocks[i].x-25) || heroLoc[0] === (blocks[i].x+25)) && (heroLoc[1]-50) === blocks[i].y){
-        //
-      } else {
-        heroLoc[1] -= 25;
-        break;
-      }
+function arrowInput(xMove, yMove){
+
+  var moveTo = [heroLoc[0] + xMove, heroLoc[1] + yMove, 50, 50];
+
+  var moveMe = true;
+
+  for (var i in blocks){
+    if (checkPath(moveTo, blocks[i])){
+      moveMe = false;
     }
-    heroLoc[1] -= 25;
-  } else if (direction === 'right' && heroLoc[0] < mapBorder[1]){
-    heroLoc[0] += 25;
-  } else if (direction === 'down' && heroLoc[1] < mapBorder[2]){
-    heroLoc[1] += 25;
-  } else if (direction === 'left' && heroLoc[0] !== mapBorder[3]){
-    heroLoc[0] -= 25;
+  }
+
+  if (moveMe){
+    theHero.clearRect(heroLoc[0], heroLoc[1], heroLoc[2], heroLoc[3]);
+    heroLoc = moveTo;
+  } else {
+    //
   }
   renderAll();
 }
 
+function checkPath(move, blocks){
+  return !(move[0] >= blocks.x + blocks.w || move[0] + move[2] <= blocks.x || move[1] >= blocks.y + blocks.h || move[1] + move[3] <= blocks.y);
+}
 
-// function pathUp() {
-//   if (heroLoc[1] !== mapBorder[0]) {
-//     if (yPath()[0] === bottomWall()[0] && bottomWall()[1] === yPath()[1]) {
-//       return false;
-//     } else {
-//       theHero.clearRect(heroLoc[0], heroLoc[1], heroLoc[2], heroLoc[3]);
-//       heroLoc[1] -= 25;
-//       return true;
-//     }
-//   }
-// }
-// function yPath() {
-//   for (var i = 0; i < blocks.length; i++) {
-//     if (heroLoc[0] === blocks[i].x || heroLoc[0] === (blocks[i].x-25) || heroLoc[0] === (blocks[i].x+25)) {
-//       console.log('path is blocked');
-//       return [false, i];
-//     }
-//   }
-//   return [true, i];
-// }
-// function bottomWall() {
-//   for (var i = 0; i < blocks.length; i++) {
-//     if ((heroLoc[1]-50) === blocks[i].y) {
-//       console.log('wall');
-//       return [false, i];
-//     }
-//   }
-//   return [true, i];
-// }
