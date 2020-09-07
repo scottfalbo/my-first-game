@@ -104,12 +104,16 @@ function renderItems(){
 // ------------------- Movement Functions ---------------------
 function arrowInput(direction){
   theHero.clearRect(heroLoc[0], heroLoc[1], heroLoc[2], heroLoc[3]);
-  if (direction === 'up'){
-    if (pathUp()){
-      console.log('clear');
-    } else {
-      console.log('something in the way');
+  if (direction === 'up' && heroLoc[1] !== mapBorder[0]){
+    for (var i in blocks){
+      if ((heroLoc[0] === blocks[i].x || heroLoc[0] === (blocks[i].x-25) || heroLoc[0] === (blocks[i].x+25)) && (heroLoc[1]-50) === blocks[i].y){
+        //
+      } else {
+        heroLoc[1] -= 25;
+        break;
+      }
     }
+    heroLoc[1] -= 25;
   } else if (direction === 'right' && heroLoc[0] < mapBorder[1]){
     heroLoc[0] += 25;
   } else if (direction === 'down' && heroLoc[1] < mapBorder[2]){
@@ -121,86 +125,32 @@ function arrowInput(direction){
 }
 
 
-// var checker = [false, 0];
-// var checkerTwo = [false, 0];
-function pathUp() {
-  if (heroLoc[1] !== mapBorder[0]) {
-    if (yPath()[0] === bottomWall()[0] && bottomWall()[1] === yPath()[1]) {
-      return false;
-    } else {
-      theHero.clearRect(heroLoc[0], heroLoc[1], heroLoc[2], heroLoc[3]);
-      heroLoc[1] -= 25;
-      return true;
-    }
-  }
-}
-
-function yPath() {
-  for (var i = 0; i < blocks.length; i++) {
-    if (heroLoc[0] === blocks[i].x || heroLoc[0] === (blocks[i].x-25) || heroLoc[0] === (blocks[i].x+25)) {
-      return [false, i];
-    }
-  }
-  return [true, i];
-}
-
-function bottomWall() {
-  for (var i = 0; i < blocks.length; i++) {
-    if ((heroLoc[1]-50) === blocks[i].y) {
-      return [false, i];
-    }
-  }
-  return [true, i];
-}
-
-
-
-
-
-
-// function checkPathUp(direction) {
-//   var checker = [];
-//   var overallCheck = [];
-//   for (var i in blocks){
-//     console.log(i);
-//     checker = [];
-//     if ((heroLoc[0] < (blocks[i].x + 50) && heroLoc[0] > (blocks[i].x -50))){
-//       checker.push(false);
+// function pathUp() {
+//   if (heroLoc[1] !== mapBorder[0]) {
+//     if (yPath()[0] === bottomWall()[0] && bottomWall()[1] === yPath()[1]) {
+//       return false;
 //     } else {
-//       checker.push(true);
-//     }
-//     if (heroLoc[1] < (blocks[i].y + 50) && heroLoc[1] > (blocks[i].y - 50)){
-//       checker.push(false);
-//     } else {
-//       checker.push(true);
-//     }
-//     overallCheck.push(checker);
-//     console.log(overallCheck);
-//   }
-//   for (var j in overallCheck){
-//     for (var k in overallCheck[j]){
-//       if (overallCheck[j][k] === false){
-//         return false;
-//       }
+//       theHero.clearRect(heroLoc[0], heroLoc[1], heroLoc[2], heroLoc[3]);
+//       heroLoc[1] -= 25;
+//       return true;
 //     }
 //   }
-//   return true;
 // }
-// // function checkPathDown(direction) {
-// //   var checker = [''];
-// //   for (var i in blocks){
-// //     console.log(i);
-// //     if ((heroLoc[0] < (blocks[i].x + 50) && heroLoc[0] > (blocks[i].x -50)) && (heroLoc[1] < (blocks[i].y + 75) && heroLoc[1] > (blocks[i].y -75)) ){
-// //       checker.push(false);
-// //     } else {
-// //       checker.push(true);
-// //     }
-// //     for (var j in checker){
-// //       if (checker[j] === false){
-// //         console.log(checker);
-// //         return false;
-// //       }
-// //     }
-// //   }
-// //   return true;
-// // }
+// function yPath() {
+//   for (var i = 0; i < blocks.length; i++) {
+//     if (heroLoc[0] === blocks[i].x || heroLoc[0] === (blocks[i].x-25) || heroLoc[0] === (blocks[i].x+25)) {
+//       console.log('path is blocked');
+//       return [false, i];
+//     }
+//   }
+//   return [true, i];
+// }
+// function bottomWall() {
+//   for (var i = 0; i < blocks.length; i++) {
+//     if ((heroLoc[1]-50) === blocks[i].y) {
+//       console.log('wall');
+//       return [false, i];
+//     }
+//   }
+//   return [true, i];
+// }
