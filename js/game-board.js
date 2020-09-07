@@ -86,7 +86,6 @@ function renderZone(){
   for (var i in blocks){
     theZone.fillRect(blocks[i].x, blocks[i].y, 50, 50);
   }
-  // }
 }
 function renderHero(){
   theHero.fillStyle = 'blue';
@@ -105,10 +104,12 @@ function renderItems(){
 // ------------------- Movement Functions ---------------------
 function arrowInput(direction){
   theHero.clearRect(heroLoc[0], heroLoc[1], heroLoc[2], heroLoc[3]);
-  if (direction === 'up' && heroLoc[1] !== mapBorder[0]){
-    // if (checkPathUp('up')){
-      heroLoc[1] -= 25;
-    // }
+  if (direction === 'up'){
+    if (pathUp()){
+      console.log('clear');
+    } else {
+      console.log('something in the way');
+    }
   } else if (direction === 'right' && heroLoc[0] < mapBorder[1]){
     heroLoc[0] += 25;
   } else if (direction === 'down' && heroLoc[1] < mapBorder[2]){
@@ -118,6 +119,44 @@ function arrowInput(direction){
   }
   renderAll();
 }
+
+
+// var checker = [false, 0];
+// var checkerTwo = [false, 0];
+function pathUp() {
+  if (heroLoc[1] !== mapBorder[0]) {
+    if (yPath()[0] === bottomWall()[0] && bottomWall()[1] === yPath()[1]) {
+      return false;
+    } else {
+      theHero.clearRect(heroLoc[0], heroLoc[1], heroLoc[2], heroLoc[3]);
+      heroLoc[1] -= 25;
+      return true;
+    }
+  }
+}
+
+function yPath() {
+  for (var i = 0; i < blocks.length; i++) {
+    if (heroLoc[0] === blocks[i].x || heroLoc[0] === (blocks[i].x-25) || heroLoc[0] === (blocks[i].x+25)) {
+      return [false, i];
+    }
+  }
+  return [true, i];
+}
+
+function bottomWall() {
+  for (var i = 0; i < blocks.length; i++) {
+    if ((heroLoc[1]-50) === blocks[i].y) {
+      return [false, i];
+    }
+  }
+  return [true, i];
+}
+
+
+
+
+
 
 // function checkPathUp(direction) {
 //   var checker = [];
