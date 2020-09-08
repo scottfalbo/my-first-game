@@ -29,19 +29,16 @@ window.addEventListener('keydown', function (event) {
 // Get the size of the play field and puts limits into mapBorder
 // mapBorder = [top, right, bottom, left];
 var mapBorder = [];
-function zoneSize(){
-  var getZone = document.getElementById('zone');
-  var zoneWidth = getZone.getAttribute('width');
-  var zoneHeight = getZone.getAttribute('height');
+
+var getZone = document.getElementById('zone');
+var zoneWidth = getZone.getAttribute('width');
+var zoneHeight = getZone.getAttribute('height');
   mapBorder = [0, (zoneWidth-50), (zoneHeight-50), 0]; //eslint-disable-line
-}
-zoneSize();
+
 
 // Hero coords (x, y, xFill, yFill).
 var heroLoc = [375, 275, 50, 50];
 
-// array to hold all of the impassable blocks on the map
-var blocks = [];
 
 // Object to hold hero information.
 var theHeroObject = { //eslint-disable-line
@@ -60,31 +57,19 @@ var itemsCanvas = document.getElementById('items');
 var theItems = itemsCanvas.getContext('2d');
 
 // --------------------------------------------------------------
-// -------- Block Constructor ------------
-function BlockMaker(x, y){
-  this.x = x;
-  this.y = y;
-  this.w = 50;
-  this.h = 50;
-  blocks.push(this);
-}
 // ----------- Render Functions -------------------
 // Load the Hero to the screen.
 window.onload = function() {
+  // buildMap01();
   renderZone();
   renderAll();
 };
 function renderAll(){
   renderHero();
-  renderMobs();
-  renderItems();
+  // renderMobs();
+  // renderItems();
 }
 function renderZone(){
-  // for (var n = 100; n < 500; n += 50){
-  new BlockMaker(100, 100);
-  new BlockMaker(200, 200);
-  new BlockMaker(300, 300);
-  new BlockMaker(400, 400);
   for (var i in blocks){
     theZone.fillRect(blocks[i].x, blocks[i].y, blocks[i].w, blocks[i].h);
   }
@@ -109,13 +94,13 @@ function arrowInput(xMove, yMove){
   var moveTo = [heroLoc[0] + xMove, heroLoc[1] + yMove, 50, 50];
 
   var moveMe = true;
-
+  // loops through the blocks, if there is a barrier returns false and does nothing
   for (var i in blocks){
     if (checkPath(moveTo, blocks[i])){
       moveMe = false;
     }
   }
-
+  // if the path is clear make the move
   if (moveMe){
     theHero.clearRect(heroLoc[0], heroLoc[1], heroLoc[2], heroLoc[3]);
     heroLoc = moveTo;
@@ -124,8 +109,9 @@ function arrowInput(xMove, yMove){
   }
   renderAll();
 }
-
+// check to make sure the path is clear before moving
 function checkPath(move, blocks){
   return !(move[0] >= blocks.x + blocks.w || move[0] + move[2] <= blocks.x || move[1] >= blocks.y + blocks.h || move[1] + move[3] <= blocks.y);
 }
 
+// mapBorder = [top, right, bottom, left];
