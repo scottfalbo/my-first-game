@@ -12,10 +12,17 @@ header {
 }
 
 main {
-  background: white;
+  /* background: white; */
   width: 960px;
   height: 680px;
   margin: 20px auto;
+}
+
+main > section {
+  width: 960px;
+  height: 680px;
+  margin: auto;
+  /* background: grey; */
 }
 
 .play-field {
@@ -23,7 +30,7 @@ main {
   position: absolute;
   width: 800px;
   height: 600px;
-  left: 200px;
+  left: 5%;
   top: 80px;
 }
 canvas {
@@ -34,5 +41,15 @@ canvas {
   background: url(./../images/background.jpg);
 }
 #hero {
+  z-index: 2;
+}
+#baddies {
+  z-index: 2;
+}
+#items {
   z-index: 1;
+}
+
+#tile {
+  display: none;
 }
