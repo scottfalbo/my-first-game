@@ -3,6 +3,7 @@
 // --------------- ZONE CONSTRUCTORS -------------
 // global array to hold blocks
 var blocks = [];
+var chests = [];
 // block constructor, use multiples of 25
 function BlockMaker(x, y, w, h, imgSrc){
   this.x = x;
@@ -21,6 +22,7 @@ function ChestMaker(x, y, w, h, imgSrc, contents, quantity){
   this.contents = contents;
   this.quantity = quantity;
   blocks.push(this);
+  chests.push(this);
 }
 
 // Instantiate some blocks

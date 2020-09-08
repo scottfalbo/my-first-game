@@ -69,6 +69,9 @@ function renderAll(){
   renderMobs();
   renderItems();
   renderStats();
+  for (var j in chests){ //eslint-disable-line
+    interact(chests[j]); //eslint-disable-line
+  }
 }
 function renderZone(){
   for (var i in blocks){ //eslint-disable-line
@@ -121,4 +124,11 @@ function arrowInput(xMove, yMove){
 // check to make sure the path is clear before moving
 function checkPath(move, blocks){
   return !(move[0] >= blocks.x + blocks.w || move[0] + move[2] <= blocks.x || move[1] >= blocks.y + blocks.h || move[1] + move[3] <= blocks.y);
+}
+function interact(items){
+  if (theHero.x > items.x + items.w || theHero.x + theHero.w < items.x || theHero.y > items.y + items.h || theHero.y + theHero.h < items.y){
+    console.log('interact');
+  } else {
+    console.log('nothing in range');
+  }
 }

@@ -2,5 +2,5 @@
 
 // --------------- ITEM CONSTRUCTORS ------------
 //global array to hold items
-var items = [];
+var items = []; //eslint-disable-line
 
