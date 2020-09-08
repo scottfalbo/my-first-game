@@ -52,9 +52,9 @@ var theZone = zoneCanvas.getContext('2d');
 var heroCanvas = document.getElementById('hero');
 var theHero = heroCanvas.getContext('2d');
 var mobsCanvas = document.getElementById('baddies');
-var theMobs = mobsCanvas.getContext('2d');
+var theMobs = mobsCanvas.getContext('2d');//eslint-disable-line
 var itemsCanvas = document.getElementById('items');
-var theItems = itemsCanvas.getContext('2d');
+var theItems = itemsCanvas.getContext('2d');//eslint-disable-line
 
 // --------------------------------------------------------------
 // ----------- Render Functions -------------------
@@ -66,12 +66,12 @@ window.onload = function() {
 };
 function renderAll(){
   renderHero();
-  // renderMobs();
-  // renderItems();
+  renderMobs();
+  renderItems();
 }
 function renderZone(){
-  for (var i in blocks){
-    theZone.fillRect(blocks[i].x, blocks[i].y, blocks[i].w, blocks[i].h);
+  for (var i in blocks){ //eslint-disable-line
+    theZone.drawImage(blocks[i].imgSrc, blocks[i].x, blocks[i].y, blocks[i].w, blocks[i].h); //eslint-disable-line
   }
 }
 function renderHero(){
@@ -79,13 +79,13 @@ function renderHero(){
   theHero.fillRect(heroLoc[0], heroLoc[1], heroLoc[2], heroLoc[3]);
 }
 function renderMobs(){
-  theMobs.fillStyle = 'red';
-  theMobs.fillRect(700, 300, 50, 50);
-  theMobs.fillRect(600, 500, 50, 50);
+  // theMobs.fillStyle = 'red';
+  // theMobs.fillRect(700, 300, 50, 50);
+  // theMobs.fillRect(600, 500, 50, 50);
 }
 function renderItems(){
-  theItems.fillStyle = 'gold';
-  theItems.fillRect(0, 0, 50, 50);
+  // theItems.fillStyle = 'gold';
+  // theItems.fillRect(0, 0, 50, 50);
 }
 
 // ------------------- Movement Functions ---------------------
@@ -95,8 +95,8 @@ function arrowInput(xMove, yMove){
 
   var moveMe = true;
   // loops through the blocks, if there is a barrier returns false and does nothing
-  for (var i in blocks){
-    if (checkPath(moveTo, blocks[i])){
+  for (var i in blocks){ //eslint-disable-line
+    if (checkPath(moveTo, blocks[i])){ //eslint-disable-line
       moveMe = false;
     }
   }
@@ -113,5 +113,3 @@ function arrowInput(xMove, yMove){
 function checkPath(move, blocks){
   return !(move[0] >= blocks.x + blocks.w || move[0] + move[2] <= blocks.x || move[1] >= blocks.y + blocks.h || move[1] + move[3] <= blocks.y);
 }
-
-// mapBorder = [top, right, bottom, left];

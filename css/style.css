@@ -49,3 +49,7 @@ canvas {
 #items {
   z-index: 1;
 }
+
+#tile {
+  display: none;
+}
