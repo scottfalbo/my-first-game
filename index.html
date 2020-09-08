@@ -16,15 +16,43 @@
 
   <main>
     <section>
-      <canvas id="zone" class="play-field" width="800" height="600"></canvas>
-      <canvas id="hero" class="play-field" width="800" height="600"></canvas>
-      <canvas id="baddies" class="play-field" width="800" height="600"></canvas>
-      <canvas id="items" class="play-field" width="800" height="600"></canvas>
+      <section id="stats">
+        <img src="http://placehold.it/75x75/111" alt="">
+          <ul>
+            <li>Health</li>
+            <li id="hp">0</li>
+            <li>Magic</li>
+            <li id="mp">0</li>
+            <li>Exp</li>
+            <li id="exp">0</li>
+            <li>Gold</li>
+            <li id="gold">0</li>
+          </ul>
+      </section>
+      <section id="canvasHolder">
+        <canvas id="zone" class="play-field" width="800" height="600"></canvas>
+        <canvas id="hero" class="play-field" width="800" height="600"></canvas>
+        <canvas id="baddies" class="play-field" width="800" height="600"></canvas>
+        <canvas id="items" class="play-field" width="800" height="600"></canvas>
+      </section>
+    </section>
+    <section id="mainbar">
+      <ul>
+        <li><a href="#"><img src="http://placehold.it/75x75/111" alt=""></a></li>
+        <li><a href="#"><img src="http://placehold.it/75x75/111" alt=""></a></li>
+        <li><a href="#"><img src="http://placehold.it/75x75/111" alt=""></a></li>
+        <li><a href="#"><img src="http://placehold.it/75x75/111" alt=""></a></li>
+        <li><a href="#"><img src="http://placehold.it/75x75/111" alt=""></a></li>
+        <li><a href="#"><img src="http://placehold.it/75x75/111" alt=""></a></li>
+      </ul>
     </section>
   </main>
   <img src="./images/environment/tile.jpg" id="tile">
+  <img src="./images/hero-images/hero.png" id="heroSprite">
+  <img src="./images/environment/chest.png" id="chest">
   <footer></footer>
   <script src="./js/map-01.js" type="text/javascript"></script>
+  <script src="./js/items.js" type="text/javascript"></script>
   <script src="./js/game-board.js" type="text/javascript"></script>
 </body>
 

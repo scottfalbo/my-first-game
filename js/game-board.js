@@ -36,21 +36,21 @@ var zoneHeight = getZone.getAttribute('height');
   mapBorder = [0, (zoneWidth-50), (zoneHeight-50), 0]; //eslint-disable-line
 
 
-// Hero coords (x, y, xFill, yFill).
-var heroLoc = [375, 275, 50, 50];
-
-
 // Object to hold hero information.
-var theHeroObject = { //eslint-disable-line
+var theHero = { //eslint-disable-line
   name: 'Hero',
-  mapLoc: heroLoc,
-  heroImage: ''
+  mapLoc: [375, 275, 50, 50],
+  heroImage: document.getElementById('heroSprite'),
+  hp: 10,
+  mp: 5,
+  exp: 0,
+  gold: 0
 };
 // Get the canvas elements and define context
 var zoneCanvas = document.getElementById('zone');
 var theZone = zoneCanvas.getContext('2d');
 var heroCanvas = document.getElementById('hero');
-var theHero = heroCanvas.getContext('2d');
+var theHeroLoc = heroCanvas.getContext('2d');
 var mobsCanvas = document.getElementById('baddies');
 var theMobs = mobsCanvas.getContext('2d');//eslint-disable-line
 var itemsCanvas = document.getElementById('items');
@@ -68,6 +68,7 @@ function renderAll(){
   renderHero();
   renderMobs();
   renderItems();
+  renderStats();
 }
 function renderZone(){
   for (var i in blocks){ //eslint-disable-line
@@ -75,8 +76,7 @@ function renderZone(){
   }
 }
 function renderHero(){
-  theHero.fillStyle = 'blue';
-  theHero.fillRect(heroLoc[0], heroLoc[1], heroLoc[2], heroLoc[3]);
+  theHeroLoc.drawImage(theHero.heroImage, theHero.mapLoc[0], theHero.mapLoc[1], theHero.mapLoc[2], theHero.mapLoc[3]);
 }
 function renderMobs(){
   // theMobs.fillStyle = 'red';
@@ -84,14 +84,23 @@ function renderMobs(){
   // theMobs.fillRect(600, 500, 50, 50);
 }
 function renderItems(){
-  // theItems.fillStyle = 'gold';
-  // theItems.fillRect(0, 0, 50, 50);
+//
+}
+function renderStats(){
+  var hp = document.getElementById('hp');
+  var mp = document.getElementById('mp');
+  var exp = document.getElementById('exp');
+  var gold = document.getElementById('gold');
+  hp.textContent = theHero.hp;
+  mp.textContent = theHero.mp;
+  exp.textContent = theHero.exp;
+  gold.textContent = theHero.gold;
 }
 
 // ------------------- Movement Functions ---------------------
 function arrowInput(xMove, yMove){
 
-  var moveTo = [heroLoc[0] + xMove, heroLoc[1] + yMove, 50, 50];
+  var moveTo = [theHero.mapLoc[0] + xMove, theHero.mapLoc[1] + yMove, 50, 50];
 
   var moveMe = true;
   // loops through the blocks, if there is a barrier returns false and does nothing
@@ -102,8 +111,8 @@ function arrowInput(xMove, yMove){
   }
   // if the path is clear make the move
   if (moveMe){
-    theHero.clearRect(heroLoc[0], heroLoc[1], heroLoc[2], heroLoc[3]);
-    heroLoc = moveTo;
+    theHeroLoc.clearRect(theHero.mapLoc[0], theHero.mapLoc[1], theHero.mapLoc[2], theHero.mapLoc[3]);
+    theHero.mapLoc = moveTo;
   } else {
     //
   }

@@ -17,3 +17,13 @@
 + Build out two `<canvas>` elements.  One for the zone map and one for the hero. 
   + The zone map layer should have the play field with background imagery as well as zone barriers.
   + The hero layer will render and move the hero around making sure it can't move through barriers or the element edge.
+
+*updated 9/7*
+
++ Created `js/map-01.js` to hold the environmental constructor functions as well as the instantiate code.
++ Got the the `checkPath()` function working properly. The hero sprite is restricted by environmental objects.
+
+### Task Two
++ Build out a basic map.
++ Populate some items and work on even triggers.
++ Add a basic UI 

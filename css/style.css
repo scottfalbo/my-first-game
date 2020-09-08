@@ -17,12 +17,18 @@ main {
   height: 680px;
   margin: 20px auto;
 }
+#stats {
+  float: left;
+  background: #666;
+  
+}
 
-main > section {
-  width: 960px;
-  height: 680px;
+#canvasHolder {
+  position: relative;
+  width: 800px;
+  height: 600px;
   margin: auto;
-  /* background: grey; */
+  background: grey;
 }
 
 .play-field {
@@ -30,8 +36,8 @@ main > section {
   position: absolute;
   width: 800px;
   height: 600px;
-  left: 5%;
-  top: 80px;
+  left: 0%;
+  /* top: 40px; */
 }
 canvas {
   background-color: transparent;
@@ -50,6 +56,28 @@ canvas {
   z-index: 1;
 }
 
+
+#mainbar {
+  background: #666;
+  width: 650px;
+  margin: 10px auto;
+  padding: 10px;
+  border-radius: 25px;
+}
+#mainbar li {
+  display: inline-block;
+  margin: 0px 10px;
+}
+#mainbar  li  img {
+  border-radius: 50px;
+}
+
 #tile {
+  display: none;
+ }
+#heroSprite {
+   display: none;
+}
+#chest {
   display: none;
 }
