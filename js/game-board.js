@@ -7,15 +7,19 @@ window.addEventListener('keydown', function (event) {
   }
   switch (event.key) {
   case 'ArrowDown':
+  case 's':
     arrowInput(0, 25);
     break;
   case 'ArrowUp':
+  case 'w':
     arrowInput(0, -25);
     break;
   case 'ArrowLeft':
+  case 'a':
     arrowInput(-25, 0);
     break;
   case 'ArrowRight':
+  case 'd':
     arrowInput(25, 0);
     break;
   default:
@@ -34,18 +38,6 @@ var getZone = document.getElementById('zone');
 var zoneWidth = getZone.getAttribute('width');
 var zoneHeight = getZone.getAttribute('height');
   mapBorder = [0, (zoneWidth-50), (zoneHeight-50), 0]; //eslint-disable-line
-
-
-// Object to hold hero information.
-var theHero = { //eslint-disable-line
-  name: 'Hero',
-  mapLoc: [375, 275, 50, 50],
-  heroImage: document.getElementById('heroSprite'),
-  hp: 10,
-  mp: 5,
-  exp: 0,
-  gold: 0
-};
 // Get the canvas elements and define context
 var zoneCanvas = document.getElementById('zone');
 var theZone = zoneCanvas.getContext('2d');
@@ -60,7 +52,7 @@ var theItems = itemsCanvas.getContext('2d');//eslint-disable-line
 // ----------- Render Functions -------------------
 // Load the Hero to the screen.
 window.onload = function() {
-  // buildMap01();
+  buildScene01();
   renderZone();
   renderAll();
 };
@@ -69,13 +61,13 @@ function renderAll(){
   renderMobs();
   renderItems();
   renderStats();
-  for (var j in chests){ //eslint-disable-line
-    interact(chests[j]); //eslint-disable-line
-  }
 }
 function renderZone(){
   for (var i in blocks){ //eslint-disable-line
     theZone.drawImage(blocks[i].imgSrc, blocks[i].x, blocks[i].y, blocks[i].w, blocks[i].h); //eslint-disable-line
+  }
+  for (var i in passThrough){ //eslint-disable-line
+    theZone.drawImage(passThrough[i].imgSrc, passThrough[i].x, passThrough[i].y, passThrough[i].w, passThrough[i].h); //eslint-disable-line
   }
 }
 function renderHero(){
@@ -112,23 +104,27 @@ function arrowInput(xMove, yMove){
       moveMe = false;
     }
   }
+  for (var j in triggerEvents){
+    if (checkEvent(moveTo, triggerEvents[j])){
+      triggerEvents[j].trigger();
+      moveMe = false;
+    }
+  }
   // if the path is clear make the move
   if (moveMe){
     theHeroLoc.clearRect(theHero.mapLoc[0], theHero.mapLoc[1], theHero.mapLoc[2], theHero.mapLoc[3]);
     theHero.mapLoc = moveTo;
-  } else {
-    //
   }
   renderAll();
 }
+
 // check to make sure the path is clear before moving
 function checkPath(move, blocks){
   return !(move[0] >= blocks.x + blocks.w || move[0] + move[2] <= blocks.x || move[1] >= blocks.y + blocks.h || move[1] + move[3] <= blocks.y);
 }
-function interact(items){
-  if (theHero.x > items.x + items.w || theHero.x + theHero.w < items.x || theHero.y > items.y + items.h || theHero.y + theHero.h < items.y){
-    console.log('interact');
-  } else {
-    console.log('nothing in range');
-  }
+
+// check for event triggers
+function checkEvent(move, triggerEvents){
+  return !(move[0] >= triggerEvents.x + triggerEvents.w || move[0] + move[2] <= triggerEvents.x || move[1] >= triggerEvents.y + triggerEvents.h || move[1] + move[3] <= triggerEvents.y);
 }
+

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./../css/reset.css" type="text/css">
+  <link rel="stylesheet" href="./../css/game-board.css" type="text/css">
+  <title>My First Game</title>
+</head>
+
+<body>
+  <header>
+    <a href="./../index.html"><h1>My First Game</h1></a>
+  </header>
+
+  <main>
+    <section>
+      <section id="stats">
+        <img src="http://placehold.it/75x75/111" alt="">
+          <ul>
+            <li>Health</li>
+            <li id="hp">0</li>
+            <li>Magic</li>
+            <li id="mp">0</li>
+            <li>Exp</li>
+            <li id="exp">0</li>
+            <li>Gold</li>
+            <li id="gold">0</li>
+          </ul>
+      </section>
+      <section id="canvasHolder">
+        <canvas id="zone" class="play-field" width="800" height="600"></canvas>
+        <canvas id="hero" class="play-field" width="800" height="600"></canvas>
+        <canvas id="baddies" class="play-field" width="800" height="600"></canvas>
+        <canvas id="items" class="play-field" width="800" height="600"></canvas>
+      </section>
+    </section>
+    <section id="mainbar">
+      <ul>
+        <li><a href="#"><img src="http://placehold.it/75x75/111" alt=""></a></li>
+        <li><a href="#"><img src="http://placehold.it/75x75/111" alt=""></a></li>
+        <li><a href="#"><img src="http://placehold.it/75x75/111" alt=""></a></li>
+        <li><a href="#"><img src="http://placehold.it/75x75/111" alt=""></a></li>
+        <li><a href="#"><img src="http://placehold.it/75x75/111" alt=""></a></li>
+        <li><a href="#"><img src="http://placehold.it/75x75/111" alt=""></a></li>
+      </ul>
+    </section>
+  </main>
+  <img src="./../images/environment/tile.jpg" id="tile" class="hiddenicon">
+  <img src="./../images/environment/bridge.jpg" id="bridge" class="hiddenicon">
+  <img src="./../images/environment/little-rocks.jpg" id="little-rocks" class="hiddenicon">
+  <img src="./../images/environment/river-bottom.jpg" id="river-bottom" class="hiddenicon">
+  <img src="./../images/environment/river-top.jpg" id="river-top" class="hiddenicon">
+  <img src="./../images/environment/rocks.jpg" id="rocks" class="hiddenicon">
+  <img src="./../images/environment/small-bush.jpg" id="small-bush" class="hiddenicon">
+  <img src="./../images/hero-images/hero.png" id="heroSprite" class="hiddenicon">
+  <footer></footer>
+  <script src="./../js/hero.js" type="text/javascript"></script>
+  <script src="./../js/map-01.js" type="text/javascript"></script>
+  <script src="./../js/items-events.js" type="text/javascript"></script>
+  <script src="./../js/game-board.js" type="text/javascript"></script>
+</body>
+
+</html>

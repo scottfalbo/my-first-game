@@ -1,0 +1,77 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: lightgray;
+  text-align: center;
+}
+
+header {
+  margin: 10px auto;
+}
+
+main {
+  /* background: white; */
+  width: 960px;
+  height: 680px;
+  margin: 20px auto;
+}
+#stats {
+  float: left;
+  background: #666;
+  
+}
+
+#canvasHolder {
+  position: relative;
+  width: 800px;
+  height: 600px;
+  margin: auto;
+  background: grey;
+}
+
+.play-field {
+  border: 1px solid black;
+  position: absolute;
+  width: 800px;
+  height: 600px;
+  left: 0%;
+  /* top: 40px; */
+}
+canvas {
+  background-color: transparent;
+}
+#zone {
+  z-index: 0;
+  background: url(./../images/environment/grass-background.jpg);
+}
+#hero {
+  z-index: 2;
+}
+#baddies {
+  z-index: 2;
+}
+#items {
+  z-index: 1;
+}
+
+
+#mainbar {
+  background: #666;
+  width: 650px;
+  margin: 10px auto;
+  padding: 10px;
+  border-radius: 25px;
+}
+#mainbar li {
+  display: inline-block;
+  margin: 0px 10px;
+}
+#mainbar  li  img {
+  border-radius: 50px;
+}
+
+.hiddenicon {
+  display: none;
+ }
