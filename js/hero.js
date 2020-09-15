@@ -8,5 +8,7 @@ var theHero = { //eslint-disable-line
   hp: 10,
   mp: 5,
   exp: 0,
-  gold: 0
+  gold: 0,
+  inventory: [],
+  equipped: []
 };

@@ -25,8 +25,8 @@ function PassThroughMaker(x, y, w, h, imgSrc){
 }
 
 
-theHero.mapLoc[0] = 550;
-theHero.mapLoc[1] = 100;
+theHero.mapLoc[0] = 75;
+theHero.mapLoc[1] = 75;
 // Build the Map
 function buildScene01(){
   theZone.clearRect(0, 0, 800, 600);

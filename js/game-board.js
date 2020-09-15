@@ -127,4 +127,3 @@ function checkPath(move, blocks){
 function checkEvent(move, triggerEvents){
   return !(move[0] >= triggerEvents.x + triggerEvents.w || move[0] + move[2] <= triggerEvents.x || move[1] >= triggerEvents.y + triggerEvents.h || move[1] + move[3] <= triggerEvents.y);
 }
-

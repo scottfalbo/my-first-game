@@ -3,7 +3,7 @@
 }
 
 body {
-  background: lightgray;
+  background: #333;
   text-align: center;
 }
 
@@ -12,9 +12,10 @@ header {
 }
 
 main {
-  /* background: white; */
+  background: #999;
   width: 960px;
-  height: 680px;
+  padding: 5px;
+  /* height: 680px; */
   margin: 20px auto;
 }
 #stats {
@@ -70,6 +71,31 @@ canvas {
 }
 #mainbar  li  img {
   border-radius: 50px;
+}
+
+#inventory {
+  cursor: pointer;
+}
+
+#inventorycontent {
+  width: 410px;
+  height: 215px;
+  border: 1px solid black;
+  background: grey;
+  position: absolute;
+  bottom: 210px;
+  z-index: 2;
+  display: none;
+  padding: 5px;
+}
+#inventory:hover #inventorycontent {
+  display: block;
+}
+#inventory td {
+  border: 1px black solid;
+  width: 50px;
+  height: 50px;
+  background: white;
 }
 
 .hiddenicon {
