@@ -109,6 +109,8 @@ function buildScene01(){
   new PassThroughMaker(700, 400, 50, 50, imgSrc);
   //--------------------------------------add event triggers
   scene01Events();
+  //------------------------------------- add items
+  scene01Items();
   // ----------------------------------------write the new zone
   renderZone();
   renderAll();

@@ -79,7 +79,9 @@ function renderMobs(){
   // theMobs.fillRect(600, 500, 50, 50);
 }
 function renderItems(){
-//
+  for (var i in items){
+    theItems.drawImage(items[i].imgSrc1, items[i].x, items[i].y, items[i].w, items[i].h);
+  }
 }
 function renderStats(){
   var hp = document.getElementById('hp');
