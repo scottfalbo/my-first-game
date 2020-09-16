@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./../css/reset.css" type="text/css">
   <link rel="stylesheet" href="./../css/game-board.css" type="text/css">
+  <link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro&display=swap" rel="stylesheet">
   <title>My First Game</title>
 </head>
 
@@ -38,6 +39,17 @@
         <canvas id="items" class="play-field" width="800" height="600"></canvas>
       </section>
     </section>
+    <section id="gameoutput">
+      <p>Welcome to my first rpg game!</p>
+    </section>
+    <nav>
+      <ul id="interactions">
+        <li id="open">O</li>
+        <li id="talk">T</li>
+        <li id="search">S</li>
+        <li id="use">U</li>
+      </ul>
+    </nav>
     <nav id="mainbar">
       <ul>
         <li><img src="http://placehold.it/75x75/111" alt=""></li>
@@ -52,6 +64,14 @@
               <td></td>
               <td></td>
               <td></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
               <td></td>
             </tr>
             <tr>
@@ -62,20 +82,8 @@
               <td></td>
               <td></td>
               <td></td>
-              <td></td>
             </tr>
             <tr>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <td></td>
               <td></td>
               <td></td>
               <td></td>
@@ -89,28 +97,25 @@
 
         <li><img src="http://placehold.it/75x75/111" alt=""></li>
         <li><img src="http://placehold.it/75x75/111" alt=""></li>
-        <li><img src="http://placehold.it/75x75/111" alt=""></li>
-        <li><img src="http://placehold.it/75x75/111" alt=""></li>
       </ul>
     </nav>
   </main>
-  <div class="test-block">test hover
-    <nav class="menu-wheel"></nav>
-  </div>
   <footer></footer>
-  <img src="./../images/environment/tile.jpg" id="tile" class="hiddenicon">
-  <img src="./../images/environment/bridge.jpg" id="bridge" class="hiddenicon">
-  <img src="./../images/environment/little-rocks.jpg" id="little-rocks" class="hiddenicon">
-  <img src="./../images/environment/river-bottom.jpg" id="river-bottom" class="hiddenicon">
-  <img src="./../images/environment/river-top.jpg" id="river-top" class="hiddenicon">
-  <img src="./../images/environment/rocks.jpg" id="rocks" class="hiddenicon">
-  <img src="./../images/environment/small-bush.jpg" id="small-bush" class="hiddenicon">
-  <img src="./../images/hero-images/hero.png" id="heroSprite" class="hiddenicon">
-  <img src="./../images/environment/objects/chest.jpg" id="chest" class="hiddenicon">
-  <img src="./../images/environment/objects/chest-open.jpg" id="chest-open" class="hiddenicon">
+  <nothing>
+    <img src="./../images/environment/tile.jpg" id="tile" class="hiddenicon">
+    <img src="./../images/environment/bridge.jpg" id="bridge" class="hiddenicon">
+    <img src="./../images/environment/little-rocks.jpg" id="little-rocks" class="hiddenicon">
+    <img src="./../images/environment/river-bottom.jpg" id="river-bottom" class="hiddenicon">
+    <img src="./../images/environment/river-top.jpg" id="river-top" class="hiddenicon">
+    <img src="./../images/environment/rocks.jpg" id="rocks" class="hiddenicon">
+    <img src="./../images/environment/small-bush.jpg" id="small-bush" class="hiddenicon">
+    <img src="./../images/hero-images/hero.png" id="heroSprite" class="hiddenicon">
+    <img src="./../images/environment/objects/chest.jpg" id="chest" class="hiddenicon">
+    <img src="./../images/environment/objects/chest-open.jpg" id="chest-open" class="hiddenicon">
+  </nothing>
   <script src="./../js/hero.js" type="text/javascript"></script>
   <script src="./../js/mobs.js" type="text/javascript"></script>
-  <script src="./../js/items-events.js" type="text/javascript"></script>
+  <script src="./../js/events.js" type="text/javascript"></script>
   <script src="./../js/map-01.js" type="text/javascript"></script>
   <script src="./../js/game-board.js" type="text/javascript"></script>
 </body>

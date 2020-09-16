@@ -2,7 +2,7 @@
 
 // --------------- ITEM CONSTRUCTORS ------------
 //global array to hold items
-var items = []; //eslint-disable-line
+var objectEvents = []; //eslint-disable-line
 var triggerEvents = []; //eslint-disable-line
 
 // Triggered Events
@@ -24,16 +24,21 @@ function ContainerMaker(x, y, w, h, imgSrc1, imgSrc2, type, contents){
   this.imgSrc2 = imgSrc2;
   this.type = type;
   this.contents = contents;
-  items.push(this);
+  objectEvents.push(this);
 }
-
-//------------------------------- ITEMS
-//---------------------------------------- chest
-function scene01Items(){
-  var imgSrc1 = document.getElementById('chest');
-  var imgSrc2 = document.getElementById('chest-open');
-  new ContainerMaker(50, 450, 50, 50, imgSrc1, imgSrc2, 'chest', '');
-}
+ContainerMaker.prototype.react = function(event){
+  if(event === 'open' || event === 'use'){
+    this.imgSrc1 = this.imgSrc2;
+    theHero.gold += this.contents[1];
+    infoOutput(`You open the ${this.type} and find ${this.contents[1]} ${this.contents[0]}.`);
+  } else if (event === 'talk'){
+    infoOutput(`You talk to the ${this.type}, it doesn't respond.`);
+  } else if (event === 'search'){
+    infoOutput(`You search the area and find a ${this.type}.`);
+  }
+  renderStats();
+  renderItems();
+};
 
 
 
@@ -45,6 +50,10 @@ function scene01Events(){
     theHero.mapLoc[1] = 550;
     buildScene02();
   });
+  //---------------------------------------chest
+  var imgSrc1 = document.getElementById('chest');
+  var imgSrc2 = document.getElementById('chest-open');
+  new ContainerMaker(50, 450, 50, 50, imgSrc1, imgSrc2, 'chest', ['gold', 25]);
 }
 
 //----------------------------------------zone change

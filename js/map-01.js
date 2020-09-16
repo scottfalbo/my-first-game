@@ -30,9 +30,11 @@ theHero.mapLoc[1] = 75;
 // Build the Map
 function buildScene01(){
   theZone.clearRect(0, 0, 800, 600);
+  theItems.clearRect(0, 0, 800, 600);
   // ------------------------------------clear the arrays
   blocks = [];
   passThrough = [];
+  objectEvents = [];
   // ------------------------------------hero starting point
   // ----------------------------------------------rocks
   var imgSrc = document.getElementById('rocks');
@@ -110,7 +112,7 @@ function buildScene01(){
   //--------------------------------------add event triggers
   scene01Events();
   //------------------------------------- add items
-  scene01Items();
+  // scene01Items();
   // ----------------------------------------write the new zone
   renderZone();
   renderAll();
@@ -118,9 +120,11 @@ function buildScene01(){
 
 function buildScene02(){
   theZone.clearRect(0, 0, 800, 600);
+  theItems.clearRect(0, 0, 800, 600);
   // ------------------------------------clear the arrays
   blocks = [];
   passThrough = [];
+  objectEvents = [];
   // -------------------------------------------rocks
   var imgSrc = document.getElementById('rocks');
   new BlockMaker(550, 600, 100, 25, imgSrc);
