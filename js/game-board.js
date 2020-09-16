@@ -129,3 +129,31 @@ function checkPath(move, blocks){
 function checkEvent(move, triggerEvents){
   return !(move[0] >= triggerEvents.x + triggerEvents.w || move[0] + move[2] <= triggerEvents.x || move[1] >= triggerEvents.y + triggerEvents.h || move[1] + move[3] <= triggerEvents.y);
 }
+
+// snippet from stack overflow, questions/22549505
+// makes a pop up tooltip at the cursor
+// function showMenu(event) {
+//   var tooltip = event.target.classList.contains('menu-wheel')
+//     ? event.target
+//     : event.target.querySelector(':scope .menu-wheel');
+//   tooltip.style.left =
+//       (event.pageX + tooltip.clientWidth + 10 < document.body.clientWidth)
+//         ? (event.pageX + 10 + 'px')
+//         : (document.body.clientWidth + 5 - tooltip.clientWidth + 'px');
+//   tooltip.style.top =
+//       (event.pageY + tooltip.clientHeight + 10 < document.body.clientHeight)
+//         ? (event.pageY + 10 + 'px')
+//         : (document.body.clientHeight + 5 - tooltip.clientHeight + 'px');
+// }
+// var toolTipMenu = document.querySelectorAll('.test-block');
+// for(var i = 0; i < toolTipMenu.length; i++) {
+//   toolTipMenu[i].addEventListener('mousemove', showMenu);
+// }
+
+document.onmousemove = function(e) {
+  var x = e.clientX;
+  var y = e.clientY;
+  document.getElementsByClassName('menu-wheel').style.marginLeft = x+'px';
+  document.getElementsByClassName('menu-wheel').style.marginTop = y+'px';
+};
+

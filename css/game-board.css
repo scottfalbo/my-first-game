@@ -102,4 +102,35 @@ canvas {
 
 .hiddenicon {
   display: none;
- }
+}
+
+
+/* .test-block {
+  color: white;
+  cursor: pointer;
+}
+
+.test-block .menu-wheel {
+  display: block;
+}
+
+.menu-wheel {
+  position: absolute;
+  white-space: nowrap;
+  display: none;
+  width: 150px;
+  height: 150px;
+  background: white;
+  border: 1px solid black;
+  border-radius: 100px;
+  color: black;
+  padding: 5px;
+  z-index: 5;
+} */
+.menu-wheel {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background-color: red;
+  transition: 0.2s;
+}
