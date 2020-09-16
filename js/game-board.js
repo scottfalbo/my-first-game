@@ -48,6 +48,9 @@ var theMobs = mobsCanvas.getContext('2d');//eslint-disable-line
 var itemsCanvas = document.getElementById('items');
 var theItems = itemsCanvas.getContext('2d');//eslint-disable-line
 
+//get interaction buttons
+var interactionButton = document.getElementById('interactions');
+
 // --------------------------------------------------------------
 // ----------- Render Functions -------------------
 // Load the Hero to the screen.
@@ -79,8 +82,8 @@ function renderMobs(){
   // theMobs.fillRect(600, 500, 50, 50);
 }
 function renderItems(){
-  for (var i in items){
-    theItems.drawImage(items[i].imgSrc1, items[i].x, items[i].y, items[i].w, items[i].h);
+  for (var i in objectEvents){
+    theItems.drawImage(objectEvents[i].imgSrc1, objectEvents[i].x, objectEvents[i].y, objectEvents[i].w, objectEvents[i].h);
   }
 }
 function renderStats(){
@@ -129,3 +132,35 @@ function checkPath(move, blocks){
 function checkEvent(move, triggerEvents){
   return !(move[0] >= triggerEvents.x + triggerEvents.w || move[0] + move[2] <= triggerEvents.x || move[1] >= triggerEvents.y + triggerEvents.h || move[1] + move[3] <= triggerEvents.y);
 }
+
+// even handler for the interaction buttons.  If the hero is in range of an event when clicked it will call the events method
+function reactions(event){
+  event.preventDefault();
+  var moveTo = [theHero.mapLoc[0], theHero.mapLoc[1], 50, 50];
+  // console.log(event.target.id);
+  for (var i in objectEvents){
+    var nothing = true;
+    if (checkEvent(moveTo, objectEvents[i])){
+      objectEvents[i].react(event.target.id);
+      nothing = false;
+    }
+  }
+  if (nothing === true){
+    if (event.target.id === 'open'){infoOutput('There is nothing to open.');}
+    if (event.target.id === 'talk'){infoOutput('You start talking to yourself.');}
+    if (event.target.id === 'search'){infoOutput('You search around, you find nothing.');}
+    // this one will eventually do something with inventory items
+    if (event.target.id === 'use'){infoOutput('You don\'t have anything to use.');}
+  }
+}
+
+// output game information to the player in the bottom corner
+var infoOut = document.getElementById('gameoutput');
+function infoOutput(output){
+  var p = document.createElement('p');
+  p.textContent = `>  ${output}`;
+  infoOut.insertAdjacentElement('afterbegin', p);
+}
+
+// Interactions event listener
+interactionButton.addEventListener('click', reactions);

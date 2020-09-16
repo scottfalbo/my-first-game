@@ -14,15 +14,21 @@ header {
 main {
   background: #999;
   width: 960px;
+  height: 720px;
   padding: 5px;
   /* height: 680px; */
   margin: 20px auto;
+  position: relative;
 }
+
+/* ----------------player stats */
+
 #stats {
   float: left;
   background: #666;
-  
 }
+
+/*-------------------------------- CANVAS ELEMENTS */
 
 #canvasHolder {
   position: relative;
@@ -40,59 +46,142 @@ main {
   left: 0%;
   /* top: 40px; */
 }
+
 canvas {
   background-color: transparent;
 }
+
 #zone {
   z-index: 0;
   background: url(./../images/environment/grass-background.jpg);
 }
+
 #hero {
   z-index: 2;
 }
+
 #baddies {
   z-index: 2;
 }
+
 #items {
   z-index: 1;
 }
 
-
-#mainbar {
-  background: #666;
-  width: 660px;
+/*  ----------------------------bottom navigation bars */
+/* ------------------- Game output box */
+#gameoutput {
+  background: #000;
+  width: 290px;
+  height: 106px;
   margin: 10px auto;
-  padding: 10px;
+  padding: 05px;
+  position: absolute;
+  bottom: -6px;
+  left: 10px;
+  overflow: scroll;
+  overflow-x: hidden;
+}
+#gameoutput > p {
+  color: #999999;
+  text-align: left;
+  padding: 3px 5px;
+  font-size: 14px;
+  font-family: 'Anonymous Pro', monospace;
+}
+#gameoutput > p:first-child{
+  color:#fff;
+}
+/* -------------------------scroll bar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #000;
+}
+
+::-webkit-scrollbar-thumb {
+  background: white;
+  border-radius: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #666;
+}
+
+/*  ---------------- left interaction buttons */
+
+#interactions {
+  background: #666;
+  width: 270px;
+  height: 106px;
+  margin: 10px auto;
+  padding: 05px;
   border-radius: 25px;
+  position: absolute;
+  bottom: -6px;
+  left: 310px;
 }
-#mainbar li {
+
+#interactions li {
   display: inline-block;
-  margin: 0px 10px;
-}
-#mainbar  li  img {
-  /* height: 70px; */
+  margin: 8px 6px;
+  height: 80px;
+  width: 50px;
   border-radius: 50px;
   border: 1px solid black;
 }
+
+/* ------------------- right UI buttons */
+
+#mainbar {
+  position: absolute;
+  bottom: -6px;
+  right: 10px;
+  background: #666;
+  width: 360px;
+  height: 106px;
+  margin: 10px auto;
+  padding: 15px 10px;
+  border-radius: 25px;
+}
+
+#mainbar li {
+  display: inline-block;
+  margin: 0px 5px;
+}
+
+#mainbar li img {
+  height: 70px;
+  border-radius: 50px;
+  border: 1px solid black;
+}
+
+/* ---------------inventory scroll over window */
 
 #inventory {
   cursor: pointer;
 }
 
 #inventorycontent {
-  width: 410px;
+  width: 360px;
   height: 215px;
   border: 1px solid black;
   background: grey;
   position: absolute;
-  bottom: 210px;
+  bottom: 80px;
+  right: -20px;
   z-index: 2;
   display: none;
   padding: 5px;
 }
+
 #inventory:hover #inventorycontent {
   display: block;
 }
+
 #inventory td {
   border: 1px black solid;
   width: 50px;
@@ -100,6 +189,8 @@ canvas {
   background: white;
 }
 
+/* ------------------- hidden images for javascript drawImage() */
+
 .hiddenicon {
   display: none;
- }
+}
