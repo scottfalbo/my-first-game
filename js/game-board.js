@@ -51,6 +51,11 @@ var theItems = itemsCanvas.getContext('2d');//eslint-disable-line
 //get interaction buttons
 var interactionButton = document.getElementById('interactions');
 
+//------clear local storage for used objects---------
+if (localStorage['usedObjects']){
+  localStorage.removeItem('usedObjects');
+}
+
 // --------------------------------------------------------------
 // ----------- Render Functions -------------------
 // Load the Hero to the screen.
@@ -62,7 +67,7 @@ window.onload = function() {
 function renderAll(){
   renderHero();
   renderMobs();
-  renderItems();
+  eventObjects();
   renderStats();
 }
 function renderZone(){
@@ -81,7 +86,7 @@ function renderMobs(){
   // theMobs.fillRect(700, 300, 50, 50);
   // theMobs.fillRect(600, 500, 50, 50);
 }
-function renderItems(){
+function eventObjects(){
   for (var i in objectEvents){
     theItems.drawImage(objectEvents[i].imgSrc1, objectEvents[i].x, objectEvents[i].y, objectEvents[i].w, objectEvents[i].h);
   }
@@ -139,18 +144,9 @@ function reactions(event){
   var moveTo = [theHero.mapLoc[0], theHero.mapLoc[1], 50, 50];
   // console.log(event.target.id);
   for (var i in objectEvents){
-    var nothing = true;
     if (checkEvent(moveTo, objectEvents[i])){
       objectEvents[i].react(event.target.id);
-      nothing = false;
     }
-  }
-  if (nothing === true){
-    if (event.target.id === 'open'){infoOutput('There is nothing to open.');}
-    if (event.target.id === 'talk'){infoOutput('You start talking to yourself.');}
-    if (event.target.id === 'search'){infoOutput('You search around, you find nothing.');}
-    // this one will eventually do something with inventory items
-    if (event.target.id === 'use'){infoOutput('You don\'t have anything to use.');}
   }
 }
 

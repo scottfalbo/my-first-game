@@ -25,8 +25,8 @@ function PassThroughMaker(x, y, w, h, imgSrc){
 }
 
 
-theHero.mapLoc[0] = 75;
-theHero.mapLoc[1] = 75;
+theHero.mapLoc[0] = 150;
+theHero.mapLoc[1] = 450;
 // Build the Map
 function buildScene01(){
   theZone.clearRect(0, 0, 800, 600);
@@ -35,7 +35,6 @@ function buildScene01(){
   blocks = [];
   passThrough = [];
   objectEvents = [];
-  // ------------------------------------hero starting point
   // ----------------------------------------------rocks
   var imgSrc = document.getElementById('rocks');
   new BlockMaker(550, -50, 100, 50, imgSrc);

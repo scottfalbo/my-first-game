@@ -24,20 +24,28 @@ function ContainerMaker(x, y, w, h, imgSrc1, imgSrc2, type, contents){
   this.imgSrc2 = imgSrc2;
   this.type = type;
   this.contents = contents;
+  this.opened = false;
   objectEvents.push(this);
 }
 ContainerMaker.prototype.react = function(event){
   if(event === 'open' || event === 'use'){
-    this.imgSrc1 = this.imgSrc2;
-    theHero.gold += this.contents[1];
-    infoOutput(`You open the ${this.type} and find ${this.contents[1]} ${this.contents[0]}.`);
+    if (this.opened === true){
+      infoOutput(`You've already opened this ${this.type}.`);
+    } else {
+      this.imgSrc1 = this.imgSrc2;
+      theHero.gold += this.contents[1];
+      infoOutput(`You open the ${this.type} and find ${this.contents[1]} ${this.contents[0]}.`);
+      this.opened = true;
+      console.log(objectEvents);
+      localStorage.setItem('usedObjects', JSON.stringify(objectEvents));
+    }
   } else if (event === 'talk'){
     infoOutput(`You talk to the ${this.type}, it doesn't respond.`);
   } else if (event === 'search'){
     infoOutput(`You search the area and find a ${this.type}.`);
   }
   renderStats();
-  renderItems();
+  eventObjects();
 };
 
 
@@ -54,6 +62,7 @@ function scene01Events(){
   var imgSrc1 = document.getElementById('chest');
   var imgSrc2 = document.getElementById('chest-open');
   new ContainerMaker(50, 450, 50, 50, imgSrc1, imgSrc2, 'chest', ['gold', 25]);
+  new ContainerMaker(500, 150, 50, 50, imgSrc1, imgSrc2, 'chest', ['gold', 50]);
 }
 
 //----------------------------------------zone change
