@@ -1,0 +1,445 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: #333;
+  text-align: center;
+  font-family: 'Source Code Pro', monospace;
+}
+
+main {
+  background: #999;
+  width: 960px;
+  height: 760px;
+  margin: 10px auto;
+  position: relative;
+}
+
+/* floating <divs> for frame images */
+
+#left-frame {
+  width: 30px;
+  height: 650px;
+  position: absolute;
+  left: 0px;
+  top: 10px;
+  background: rgba(30, 230, 50, .5);
+}
+
+#right-frame {
+  width: 30px;
+  height: 650px;
+  position: absolute;
+  right: 0px;
+  top: 10px;
+  background: rgba(30, 230, 50, .5);
+}
+
+#top-frame {
+  width: 960px;
+  height: 10px;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  background: rgba(30, 230, 50, .5);
+}
+
+/*-------------------------------- CANVAS ELEMENTS */
+
+#canvasHolder {
+  position: relative;
+  top: 10px;
+  width: 900px;
+  height: 650px;
+  margin: 10px auto;
+}
+
+.play-field {
+  position: absolute;
+  width: 900px;
+  height: 650px;
+  left: 0%;
+}
+
+canvas {
+  background-color: transparent;
+}
+
+#zone {
+  z-index: 0;
+  background: url(./../images/environment/grass-background.jpg);
+}
+
+/*  -------------------------------- PLAYER UI ---------------- */
+
+/*  Parent UI section */
+
+main>section:nth-child(2) {
+  /* background: rgba(230, 30, 30, .5); */
+  position: relative;
+  bottom: 0px;
+  width: 960px;
+  height: 100px;
+}
+
+/*  left most section for corner image */
+
+main>section:nth-child(2)>section:first-child {
+  position: absolute;
+  left: 0px;
+  bottom: 0px;
+  height: 125px;
+  width: 195px;
+  background: rgba(30, 230, 50, .5);
+}
+
+/*  right most section for corner image */
+
+main>section:nth-child(2)>section:last-child {
+  position: absolute;
+  right: 0px;
+  bottom: 0px;
+  height: 125px;
+  width: 195px;
+  background: rgba(30, 230, 50, .5);
+  /*  Player health and magic bar */
+}
+
+#playerHP {
+  width: 200px;
+  height: 60px;
+  position: absolute;
+  background: lightblue;
+  top: 15px;
+  left: 35px;
+}
+
+#playerHP figure {
+  width: 60px;
+  height: 60px;
+  background: #fff;
+  border-radius: 30px;
+}
+
+.bars {
+  position: absolute;
+  border-radius: 10px;
+  width: 120px;
+  height: 25px;
+  left: 65px;
+}
+#hp {
+  bottom: 30px;
+  background: rgb(190, 0, 0);
+}
+#mp {
+  bottom: 5px;
+  background: rgb(40, 37, 207);
+}
+
+
+
+/*  main player ui bar */
+
+main>section:nth-child(2)>section:nth-child(2)>nav {
+  background: blue;
+  height: 100px;
+  width: 570px;
+  margin: auto;
+}
+
+#playerUI {
+  background: rgba(30, 230, 150, .2);
+  position: absolute;
+  height: 100px;
+  left: 271px;
+}
+
+#playerUI>li {
+  vertical-align: top;
+  display: inline-block;
+  width: 70px;
+  height: 70px;
+  margin: 10px 3px;
+  background: white;
+}
+
+#playerUI li:hover {
+  cursor: pointer;
+}
+
+/* Interaction menu */
+
+#interactUI {
+  position: absolute;
+  bottom: 110px;
+  left: 140px;
+  width: 140px;
+  height: 210px;
+  background: rgba(100, 100, 100, .4);
+  z-index: 2;
+  display: none;
+}
+
+#interactUI li {
+  margin: 10px;
+  width: 120px;
+  height: 40px;
+  background: #fff;
+}
+
+/* Inventory */
+
+#inventoryUI {
+  position: absolute;
+  bottom: 110px;
+  left: 430px;
+  width: 202px;
+  height: 264px;
+  background: rgba(100, 100, 100, .4);
+  padding: 5px;
+  display: none;
+}
+
+#inventoryUI td {
+  display: inline-block;
+  margin: 2px;
+  width: 60px;
+  height: 60px;
+  background: #fff;
+  border: 1px solid #000;
+}
+
+/* Character sheet */
+
+#characterUI {
+  position: absolute;
+  right: 315px;
+  bottom: 380px;
+  width: 340px;
+  height: 340px;
+  background: rgba(100, 100, 100, .4);
+  padding: 5px;
+  display: none;
+  z-index: 5;
+}
+
+#characterUI section {
+  margin: 5px;
+  position: relative;
+}
+
+#characterUI h2 {
+  font-size: 25px;
+  background: #fff;
+  padding: 5px;
+  width: 200px;
+  margin: 5px auto 10px auto;
+}
+
+#characterUI>section>nav {
+  position: absolute;
+}
+
+#characterUI>section>nav:first-child {
+  left: 0px;
+}
+
+#characterUI>section>nav:last-child {
+  right: 0px;
+  top: 0px;
+}
+
+#characterUI>section>nav>li {
+  width: 60px;
+  height: 60px;
+  background: #fff;
+  margin: 5px;
+}
+
+#characterUI figure {
+  width: 160px;
+  height: 160px;
+  background: #fff;
+  margin: auto;
+}
+
+#characterUI ul, p {
+  display: inline-block;
+  padding: 5px;
+  font-size: 20px;
+  text-align: left;
+}
+
+#characterUI>section:last-child>ul>li {
+  background: #fff;
+  margin: 5px;
+  width: 130px;
+}
+
+#characterUI li>p:last-child {
+  float: right;
+  text-align: right;
+}
+
+/*  Quest Log */
+
+#questUI {
+  position: absolute;
+  bottom: 385px;
+  left: 332px;
+  width: 300px;
+  height: 335px;
+  background: rgba(100, 100, 100, .4);
+  padding: 5px;
+  /* overflow: scroll;
+  overflow-x: hidden; */
+  display: none;
+}
+
+#questUI h2 {
+  font-size: 25px;
+  background: #fff;
+  padding: 5px;
+  width: 160px;
+  margin: auto;
+}
+
+#questUI li {
+  background: #fff;
+  margin: 5px;
+  overflow: scroll;
+  overflow-x: hidden;
+  height: 280px;
+}
+
+#questUI h3 {
+  background: lightgray;
+  padding: 5px;
+  font-size: 1.3em;
+}
+
+#questUI li>p {
+  font-size: 1em;
+}
+
+/*  Menu */
+
+#menuUI {
+  position: absolute;
+  right: 120px;
+  bottom: 330px;
+  width: 140px;
+  height: 260px;
+  background: rgba(100, 100, 100, .4);
+  display: none;
+}
+
+#menuUI li {
+  margin: 10px;
+  width: 120px;
+  height: 40px;
+  background: #fff;
+}
+
+/* chat log window */
+
+#gamelog li {
+  position: absolute;
+  bottom: 50px;
+}
+
+#gamelog>li {
+  margin: 5px 0px 0px 5px;
+  width: 60px;
+  height: 60px;
+  background: #fff;
+  left: 30px;
+  border-radius: 50px;
+}
+
+#gamelog>li:hover {
+  cursor: pointer;
+}
+
+#gamelog>li>section {
+  background: #333;
+  position: absolute;
+  bottom: 65px;
+  left: 14px;
+  width: 340px;
+  height: 240px;
+  padding: 5px;
+  display: none;
+}
+#gamelog>li>section>section{
+  overflow: scroll;
+  overflow-x: hidden;
+  background: #000;
+  height: 230px;
+}
+
+#gamelog p {
+  color: white;
+  width: 330px;
+  font-size: 15px;
+}
+
+/*  menu windows close button */
+
+.closeX {
+  width: 20px;
+  height: 20px;
+  border: 1px solid #000;
+  border-radius: 10px;
+  background: #fff;
+  position: absolute;
+  right: -10px;
+  font-family: 'Fredoka One', cursive;
+  font-size: 15px;
+}
+#interactUI .closeX{
+  bottom: 200px;
+}
+#inventoryUI .closeX {
+  bottom: 255px;
+}
+#characterUI .closeX {
+  bottom: 330px;
+}
+#questUI .closeX {
+  bottom: 325px;
+}
+#menuUI .closeX {
+  bottom: 250px;
+}
+#gamelog .closeX {
+  bottom: 230px;
+}
+
+/* -------------------------scroll bar */
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #666;
+}
+
+::-webkit-scrollbar-thumb {
+  background: white;
+  border-radius: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #666;
+}
+
+/* ------------------- hidden images for javascript drawImage() */
+
+.hiddenicon {
+  display: none;
+}

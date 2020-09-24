@@ -1,60 +1,24 @@
 'use strict';
 
-// code adapted from MDN.  Listens for keyboard input from the arrow keys and calls the appropriate movement function.
-window.addEventListener('keydown', function (event) {
-  if (event.defaultPrevented) {
-    return; // Do nothing if the event was already processed.
-  }
-  switch (event.key) {
-  case 'ArrowDown':
-  case 's':
-    arrowInput(0, 25);
-    break;
-  case 'ArrowUp':
-  case 'w':
-    arrowInput(0, -25);
-    break;
-  case 'ArrowLeft':
-  case 'a':
-    arrowInput(-25, 0);
-    break;
-  case 'ArrowRight':
-  case 'd':
-    arrowInput(25, 0);
-    break;
-  default:
-    return; // Quit when this doesn't handle the key event.
-  }
-  // Cancel the default action to avoid it being handled twice.
-  event.preventDefault();
-}, true);
-
 // -------------- GLOBAL VARIABLES --------------
 // Get the size of the play field and puts limits into mapBorder
 // mapBorder = [top, right, bottom, left];
-var mapBorder = [];
+// var mapBorder = [];
 
-var getZone = document.getElementById('zone');
-var zoneWidth = getZone.getAttribute('width');
-var zoneHeight = getZone.getAttribute('height');
-  mapBorder = [0, (zoneWidth-50), (zoneHeight-50), 0]; //eslint-disable-line
+// var getZone = document.getElementById('zone');
+// var zoneWidth = getZone.getAttribute('width');
+// var zoneHeight = getZone.getAttribute('height');
+//   mapBorder = [0, (zoneWidth-50), (zoneHeight-50), 0];
 // Get the canvas elements and define context
-var zoneCanvas = document.getElementById('zone');
-var theZone = zoneCanvas.getContext('2d');
-var heroCanvas = document.getElementById('hero');
-var theHeroLoc = heroCanvas.getContext('2d');
-var mobsCanvas = document.getElementById('baddies');
-var theMobs = mobsCanvas.getContext('2d');//eslint-disable-line
-var itemsCanvas = document.getElementById('items');
-var theItems = itemsCanvas.getContext('2d');//eslint-disable-line
 
-//get interaction buttons
-var interactionButton = document.getElementById('interactions');
 
-//------clear local storage for used objects---------
-if (localStorage['usedObjects']){
-  localStorage.removeItem('usedObjects');
-}
+// //get interaction buttons
+// var interactionButton = document.getElementById('interactions');
+
+// //------clear local storage for used objects---------
+// if (localStorage['usedObjects']){
+//   localStorage.removeItem('usedObjects');
+// }
 
 // --------------------------------------------------------------
 // ----------- Render Functions -------------------
@@ -71,15 +35,15 @@ function renderAll(){
   renderStats();
 }
 function renderZone(){
-  for (var i in blocks){ //eslint-disable-line
-    theZone.drawImage(blocks[i].imgSrc, blocks[i].x, blocks[i].y, blocks[i].w, blocks[i].h); //eslint-disable-line
+  for (var i in blocks){
+    theZone.drawImage(blocks[i].imgSrc, blocks[i].x, blocks[i].y, blocks[i].w, blocks[i].h);
   }
-  for (var i in passThrough){ //eslint-disable-line
-    theZone.drawImage(passThrough[i].imgSrc, passThrough[i].x, passThrough[i].y, passThrough[i].w, passThrough[i].h); //eslint-disable-line
+  for (var i in passThrough){
+    theZone.drawImage(passThrough[i].imgSrc, passThrough[i].x, passThrough[i].y, passThrough[i].w, passThrough[i].h);
   }
 }
 function renderHero(){
-  theHeroLoc.drawImage(theHero.heroImage, theHero.mapLoc[0], theHero.mapLoc[1], theHero.mapLoc[2], theHero.mapLoc[3]);
+  theHero.drawImage(thePlayer.heroImage, thePlayer.mapLoc[0], thePlayer.mapLoc[1], thePlayer.mapLoc[2], thePlayer.mapLoc[3]);
 }
 function renderMobs(){
   // theMobs.fillStyle = 'red';
@@ -91,57 +55,21 @@ function eventObjects(){
     theItems.drawImage(objectEvents[i].imgSrc1, objectEvents[i].x, objectEvents[i].y, objectEvents[i].w, objectEvents[i].h);
   }
 }
-function renderStats(){
-  var hp = document.getElementById('hp');
-  var mp = document.getElementById('mp');
-  var exp = document.getElementById('exp');
-  var gold = document.getElementById('gold');
-  hp.textContent = theHero.hp;
-  mp.textContent = theHero.mp;
-  exp.textContent = theHero.exp;
-  gold.textContent = theHero.gold;
-}
-
-// ------------------- Movement Functions ---------------------
-function arrowInput(xMove, yMove){
-
-  var moveTo = [theHero.mapLoc[0] + xMove, theHero.mapLoc[1] + yMove, 50, 50];
-
-  var moveMe = true;
-  // loops through the blocks, if there is a barrier returns false and does nothing
-  for (var i in blocks){ //eslint-disable-line
-    if (checkPath(moveTo, blocks[i])){ //eslint-disable-line
-      moveMe = false;
-    }
-  }
-  for (var j in triggerEvents){
-    if (checkEvent(moveTo, triggerEvents[j])){
-      triggerEvents[j].trigger();
-      moveMe = false;
-    }
-  }
-  // if the path is clear make the move
-  if (moveMe){
-    theHeroLoc.clearRect(theHero.mapLoc[0], theHero.mapLoc[1], theHero.mapLoc[2], theHero.mapLoc[3]);
-    theHero.mapLoc = moveTo;
-  }
-  renderAll();
-}
-
-// check to make sure the path is clear before moving
-function checkPath(move, blocks){
-  return !(move[0] >= blocks.x + blocks.w || move[0] + move[2] <= blocks.x || move[1] >= blocks.y + blocks.h || move[1] + move[3] <= blocks.y);
-}
-
-// check for event triggers
-function checkEvent(move, triggerEvents){
-  return !(move[0] >= triggerEvents.x + triggerEvents.w || move[0] + move[2] <= triggerEvents.x || move[1] >= triggerEvents.y + triggerEvents.h || move[1] + move[3] <= triggerEvents.y);
-}
+// function renderStats(){
+//   var hp = document.getElementById('hp');
+//   var mp = document.getElementById('mp');
+//   var exp = document.getElementById('exp');
+//   var gold = document.getElementById('gold');
+//   hp.textContent = thePlayer.hp;
+//   mp.textContent = thePlayer.mp;
+//   exp.textContent = thePlayer.exp;
+//   gold.textContent = thePlayer.gold;
+// }
 
 // even handler for the interaction buttons.  If the hero is in range of an event when clicked it will call the events method
 function reactions(event){
   event.preventDefault();
-  var moveTo = [theHero.mapLoc[0], theHero.mapLoc[1], 50, 50];
+  var moveTo = [thePlayer.mapLoc[0], thePlayer.mapLoc[1], 50, 50];
   // console.log(event.target.id);
   for (var i in objectEvents){
     if (checkEvent(moveTo, objectEvents[i])){
