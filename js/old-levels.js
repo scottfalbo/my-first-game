@@ -1,32 +1,7 @@
 'use strict';
 
-// --------------- ZONE CONSTRUCTORS -------------
-// global array to hold blocks
-var blocks = [];
-var passThrough = [];
-
-// block constructor, use multiples of 25
-function BlockMaker(x, y, w, h, imgSrc){
-  this.x = x;
-  this.y = y;
-  this.w = w;
-  this.h = h;
-  this.imgSrc = imgSrc;
-  blocks.push(this);
-}
-// Pass through objects
-function PassThroughMaker(x, y, w, h, imgSrc){
-  this.x = x;
-  this.y = y;
-  this.w = w;
-  this.h = h;
-  this.imgSrc = imgSrc;
-  passThrough.push(this);
-}
-
-
-theHero.mapLoc[0] = 150;
-theHero.mapLoc[1] = 450;
+thePlayer.mapLoc[0] = 150;
+thePlayer.mapLoc[1] = 450;
 // Build the Map
 function buildScene01(){
   theZone.clearRect(0, 0, 800, 600);
@@ -196,3 +171,50 @@ function buildScene02(){
   renderZone();
   renderAll();
 }
+
+//-------------------------------EVENTS
+//----------------------------------------zone change
+function scene01Events(){
+  new EventTrigger(550, 0, 100, 25, function(){
+    theHero.clearRect(thePlayer.mapLoc[0], thePlayer.mapLoc[1], thePlayer.mapLoc[2], thePlayer.mapLoc[3]);
+    thePlayer.mapLoc[1] = 550;
+    buildScene02();
+  });
+  //---------------------------------------chest
+  var imgSrc1 = document.getElementById('chest');
+  var imgSrc2 = document.getElementById('chest-open');
+  new ContainerMaker(50, 450, 50, 50, imgSrc1, imgSrc2, 'chest', ['gold', 25]);
+  new ContainerMaker(500, 150, 50, 50, imgSrc1, imgSrc2, 'chest', ['gold', 50]);
+}
+
+//----------------------------------------zone change
+function scene02Events(){
+  new EventTrigger(550, 575, 100, 25, function(){
+    theHero.clearRect(thePlayer.mapLoc[0], thePlayer.mapLoc[1], thePlayer.mapLoc[2], thePlayer.mapLoc[3]);
+    thePlayer.mapLoc[1] = 0;
+    buildScene01();
+  });
+}
+
+
+// old prototype for opening chest
+
+ContainerMaker.prototype.react = function(event){
+  if(event === 'open' || event === 'use'){
+    if (this.opened === true){
+      infoOutput(`You've already opened this ${this.type}.`);
+    } else {
+      this.imgSrc1 = this.imgSrc2;
+      thePlayer.gold += this.contents[1];
+      infoOutput(`You open the ${this.type} and find ${this.contents[1]} ${this.contents[0]}.`);
+      this.opened = true;
+      console.log(objectEvents);
+    }
+  } else if (event === 'talk'){
+    infoOutput(`You talk to the ${this.type}, it doesn't respond.`);
+  } else if (event === 'search'){
+    infoOutput(`You search the area and find a ${this.type}.`);
+  }
+  renderStats();
+  eventObjects();
+};

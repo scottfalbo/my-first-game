@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./../css/reset.css" type="text/css">
+  <link rel="stylesheet" href="./../css/adventure-one.css" type="text/css">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
+  <title>My First Game</title>
+</head>
+
+<body>
+  <main>
+    <section id="canvasHolder">
+      <canvas id="zone" class="play-field" width=900 height=650></canvas>
+      <canvas id="hero" class="play-field" width=900 height=650></canvas>
+      <canvas id="npc" class="play-field" width=900 height=650></canvas>
+      <canvas id="items" class="play-field" width=900 height=650></canvas>
+    </section>
+    <section>
+      <section>left</section>
+      <section>
+        <nav>
+          <ul id="playerUI">
+            <li class="slide">inven
+              <section id="inventoryUI" class="popupUI">
+                <table>
+                  <tr>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>3</td>
+                  </tr>
+                  <tr>
+                    <td>4</td>
+                    <td>5</td>
+                    <td>6</td>
+                  </tr>
+                  <tr>
+                    <td>7</td>
+                    <td>8</td>
+                    <td>9</td>
+                  </tr>
+                  <tr>
+                    <td>10</td>
+                    <td>11</td>
+                    <td>12</td>
+                  </tr>
+                </table>
+                <div class="closeX">X</div>
+              </section>
+            </li>
+            <li class="fade">char
+              <section id="characterUI" class="popupUI">
+                <section><h2>player name</h2></section>
+                <section>
+                  <nav>
+                    <li>1</li>
+                    <li>2</li>
+                  </nav>
+                  <figure>
+                    <img src="#" alt="Hero Avatar">
+                  </figure>
+                  <nav>
+                    <li>3</li>
+                    <li>4</li>
+                  </nav>
+                </section>
+                <section>
+                  <ul>
+                    <li>
+                      <p>health</p><p>#</p>
+                    </li>
+                    <li>
+                      <p>mana</p><p>#</p>
+                    </li>
+                    <li>
+                      <p>exp</p><p>#</p>
+                    </li>
+                  </ul>
+                  <ul>
+                    <li>
+                      <p>attack</p><p>#</p>
+                    </li>
+                    <li>
+                      <p>magic</p><p>#</p>
+                    </li>
+                    <li>
+                      <p>defense</p><p>#</p>
+                    </li>
+                  </ul>
+                </section>
+                <div class="closeX">X</div>
+              </section>
+            </li>
+            <li class="slide">inter
+              <section id="interactUI" class="popupUI">
+                <nav>
+                  <ul>
+                    <li>inspect</li>
+                    <li>open</li>
+                    <li>talk</li>
+                    <li>use</li>
+                  </ul>
+                </nav>
+                <div class="closeX">X</div>
+              </section>
+            </li>
+            <li class="fade">quest log
+              <section id="questUI" class="popupUI">
+                <h2>Quest Log</h2>
+                <ul>
+                  <li>
+                    <h3>quest name</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                  </li>
+                </ul>
+                <div class="closeX">X</div>
+              </section>
+            </li>
+            <li class="fade">menu
+              <section id="menuUI" class="popupUI">
+                <nav>
+                  <ul>
+                    <li>save</li>
+                    <li>load</li>
+                    <li>how to play</li>
+                    <li>about</li>
+                    <li>quit</li>
+                  </ul>
+                </nav>
+                <div class="closeX">X</div>
+              </section>
+            </li>
+          </ul>
+        </nav>
+      </section>
+      <section>right</section>
+    </section>
+    <div id="left-frame"></div>
+    <div id="right-frame"></div>
+    <div id="top-frame"></div>
+    <ul id="gamelog">
+      <li class="slide">log
+        <section class="popupUI">
+          <section>
+            <p>hello</p>
+            <p>hello</p>
+            <p>hello</p>
+            <p>hello</p>
+            <p>hello</p>
+            <p>hello</p>
+            <p>hello</p>
+            <p>hello</p>
+            <p>hello</p>
+            <p>hello</p>
+            <p>hello</p>
+            <p>hello</p>
+            <p>hello</p>
+            <p>hello</p>
+            <p>hello</p>
+            <p>hello</p>
+            <p>hello</p>
+            <!-- append log from js -->
+          </section>
+          <div class="closeX">X</div>
+        </section>
+      </li>
+    </ul>
+    <div id="playerHP">
+      <figure>
+        <img src="#" alt="">
+      </figure>
+      <div id="hp" class ="bars"></div>
+      <div id="mp" class ="bars"></div>
+    </div>
+  </main>
+  <footer></footer>
+  <nothing>
+    <img src="./../images/environment/tile.jpg" id="tile" class="hiddenicon">
+    <img src="./../images/environment/bridge.jpg" id="bridge" class="hiddenicon">
+    <img src="./../images/environment/little-rocks.jpg" id="little-rocks" class="hiddenicon">
+    <img src="./../images/environment/river.jpg" id="river" class="hiddenicon">
+    <img src="./../images/environment/rocks.jpg" id="rocks" class="hiddenicon">
+    <img src="./../images/environment/small-bush.jpg" id="small-bush" class="hiddenicon">
+    <img src="./../images/hero-images/hero.png" id="heroSprite" class="hiddenicon">
+    <img src="./../images/environment/objects/chest.jpg" id="chest" class="hiddenicon">
+    <img src="./../images/environment/objects/chest-open.jpg" id="chest-open" class="hiddenicon">
+  </nothing>
+  <script src="./../js/constructors.js" type="text/javascript"></script>
+  <script src="./../js/adventure-one.js" type="text/javascript"></script>
+  <script src="./../js/game-master.js" type="text/javascript"></script>
+  <script src="./../js/user-interface.js" type="text/javascript"></script>
+</body>
+
+</html>
