@@ -83,8 +83,11 @@ function EventTrigger(x, y, w, h, trigger){
 }
 var containerArray = [];
 // Container maker, chests, jars, boxes, etc
-function ContainerMaker(mapLoc, imgSrc1, imgSrc2, type, contents){
-  this.mapLoc = mapLoc;
+function ContainerMaker(x, y, w, h, imgSrc1, imgSrc2, type, contents){
+  this.x = x;
+  this.y = y;
+  this.w = w;
+  this.h = h;
   this.imgSrc1 = imgSrc1;
   this.imgSrc2 = imgSrc2;
   this.type = type;
@@ -97,3 +100,22 @@ var itemArray = [];
 function ItemMaker(){
   // make items
 }
+
+// ------------------------container reaction function ----
+ContainerMaker.prototype.react = function(event){
+  if(event === 'open' || event === 'use'){
+    if (this.opened === true){
+      console.log('already open');
+    } else {
+      this.imgSrc1 = this.imgSrc2;
+      thePlayer.gold += this.contents[1];
+      console.log(`You open the ${this.type} and find ${this.contents[1]} ${this.contents[0]}.`);
+      this.opened = true;
+      loadZone('scene01');
+    }
+  } else if (event === 'talk'){
+    console.log(`You talk to the ${this.type}, it doesn't respond.`);
+  } else if (event === 'inspect'){
+    console.log(`You search the area and find a ${this.type}.`);
+  }
+};

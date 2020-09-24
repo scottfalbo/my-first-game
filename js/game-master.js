@@ -35,6 +35,7 @@ window.addEventListener('keydown', function (event) {
 // ------------------------------- Movement Functions ---------------------
 var edgeFinder = [];
 var eventFinder = [];
+var containerFinder = [];
 function arrowInput(xMove, yMove){
   var moveTo = [thePlayer.mapLoc[0] + xMove, thePlayer.mapLoc[1] + yMove, 50, 50];
   var moveMe = true;
@@ -86,7 +87,7 @@ window.onload = function() {
 // ----------------------------------------------- Load a new zone
 function loadZone(name){
   clearCanvas();
-  resetLocalArrays();
+  // resetLocalArrays();
   for (var i in theGame.zones){
     if (theGame.zones[i].name === name){
       for (var n = 0; n < theGame.zones[i].map.length; n++){
@@ -97,16 +98,38 @@ function loadZone(name){
         theZone.fillRect(theGame.zones[i].events[n].x, theGame.zones[i].events[n].y, theGame.zones[i].events[n].w, theGame.zones[i].events[n].h);
       }
       eventFinder = theGame.zones[i].events;
+      for (n = 0; n < theGame.zones[i].containers.length; n++){
+        theZone.drawImage(theGame.zones[i].containers[n].imgSrc1, theGame.zones[i].containers[n].x, theGame.zones[i].containers[n].y, theGame.zones[i].containers[n].w, theGame.zones[i].containers[n].h);
+      }
+      containerFinder = theGame.zones[i].containers;
     }
   }
   renderHero();
 }
-function resetLocalArrays(){
-  edgeFinder = [];
-  eventFinder = [];
-}
+// function resetLocalArrays(){
+//   edgeFinder = [];
+//   eventFinder = [];
+//   containerFinder = [];
+// }
 function clearCanvas(){
   theZone.clearRect(0,0,boardWidth, boardHeight);
   theNpc.clearRect(0,0,boardWidth, boardHeight);
   theItems.clearRect(0,0,boardWidth, boardHeight);
 }
+
+function interaction(event){
+  event.preventDefault();
+  var moveTo = [thePlayer.mapLoc[0], thePlayer.mapLoc[1], 50, 50];
+  // console.log(event.target.id);
+  for (var i in containerFinder){
+    if (checkPath(moveTo, containerFinder[i])){
+      containerFinder[i].react(event.target.id);
+    }
+  }
+}
+
+// for (i in containerFinder){ //eslint-disable-line
+//   if (checkPath(moveTo, containerFinder[i])){ //eslint-disable-line
+//     containerFinder[i].react();
+//   }
+// }

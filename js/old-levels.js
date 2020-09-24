@@ -202,19 +202,16 @@ function scene02Events(){
 ContainerMaker.prototype.react = function(event){
   if(event === 'open' || event === 'use'){
     if (this.opened === true){
-      infoOutput(`You've already opened this ${this.type}.`);
+      //
     } else {
       this.imgSrc1 = this.imgSrc2;
       thePlayer.gold += this.contents[1];
-      infoOutput(`You open the ${this.type} and find ${this.contents[1]} ${this.contents[0]}.`);
+      console.log(`You open the ${this.type} and find ${this.contents[1]} ${this.contents[0]}.`);
       this.opened = true;
-      console.log(objectEvents);
     }
   } else if (event === 'talk'){
-    infoOutput(`You talk to the ${this.type}, it doesn't respond.`);
+    console.log(`You talk to the ${this.type}, it doesn't respond.`);
   } else if (event === 'search'){
-    infoOutput(`You search the area and find a ${this.type}.`);
+    console.log(`You search the area and find a ${this.type}.`);
   }
-  renderStats();
-  eventObjects();
 };

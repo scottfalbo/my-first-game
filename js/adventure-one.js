@@ -80,7 +80,10 @@ function createScene01(){
     thePlayer.mapLoc[1] = 600;
     loadZone('scene02');
   });
-
+  //----------------------------------------------containers
+  var imgSrc1 = document.getElementById('chest');
+  var imgSrc2 = document.getElementById('chest-open');
+  new ContainerMaker(200, 450, 50, 50, imgSrc1, imgSrc2, 'chest', ['gold', 25]);
   //-----------------------------------------create zone object
   new ZoneMaker('scene01', mapArray, passThruArray, npcArray, containerArray, eventArray, itemArray);
 }

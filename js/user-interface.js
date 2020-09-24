@@ -26,3 +26,9 @@ function closeAll(){
     $('.popupUI').hide();
   });
 }
+//-------------------------------------interactions UI
+$(function(){
+  $('#interactUI li').click(function(event){
+    interaction(event);
+  });
+});
