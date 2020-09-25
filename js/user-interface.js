@@ -32,3 +32,13 @@ $(function(){
     interaction(event);
   });
 });
+//------------------------------------ Write to output windows --------
+function gameOutput(output){
+  $(function(){
+    $('#gameoutput p').text(output);
+    $('#gameoutput').show();
+    var logOutput = $('<p></p>').text(`> ${output}`);
+    $('#gamelog>li>section>section').prepend(logOutput);
+    $('#gold').text(thePlayer.gold);
+  });
+}

@@ -129,16 +129,16 @@ main>section:nth-child(2)>section:last-child {
   height: 25px;
   left: 65px;
 }
+
 #hp {
   bottom: 30px;
   background: rgb(190, 0, 0);
 }
+
 #mp {
   bottom: 5px;
   background: rgb(40, 37, 207);
 }
-
-
 
 /*  main player ui bar */
 
@@ -211,6 +211,20 @@ main>section:nth-child(2)>section:nth-child(2)>nav {
   border: 1px solid #000;
 }
 
+#inventoryUI>div:first-child {
+  position: absolute;
+  background: #fff;
+  width: 120px;
+  border: 1px solid #000;
+  top: -30px;
+  height: 30px;
+}
+
+#gold {
+  font-size: 20px;
+  float: right;
+}
+
 /* Character sheet */
 
 #characterUI {
@@ -219,7 +233,7 @@ main>section:nth-child(2)>section:nth-child(2)>nav {
   bottom: 380px;
   width: 340px;
   height: 340px;
-  background: rgba(100, 100, 100, .4);
+  background: rgba(100, 100, 100, 1);
   padding: 5px;
   display: none;
   z-index: 5;
@@ -373,7 +387,8 @@ main>section:nth-child(2)>section:nth-child(2)>nav {
   padding: 5px;
   display: none;
 }
-#gamelog>li>section>section{
+
+#gamelog>li>section>section {
   overflow: scroll;
   overflow-x: hidden;
   background: #000;
@@ -398,25 +413,66 @@ main>section:nth-child(2)>section:nth-child(2)>nav {
   right: -10px;
   font-family: 'Fredoka One', cursive;
   font-size: 15px;
+  cursor: pointer;
 }
-#interactUI .closeX{
+
+#interactUI .closeX {
   bottom: 200px;
 }
+
 #inventoryUI .closeX {
   bottom: 255px;
 }
+
 #characterUI .closeX {
   bottom: 330px;
 }
+
 #questUI .closeX {
   bottom: 325px;
 }
+
 #menuUI .closeX {
   bottom: 250px;
 }
+
 #gamelog .closeX {
   bottom: 230px;
 }
+#gameoutput .closeX{
+  bottom: 90px;
+}
+
+/*  -----------------------------------Game output window------- */
+
+#gameoutput {
+  position: absolute;
+  width: 410px;
+  height: 100px;
+  top: 160px;
+  left: 280px;
+  background: #999;
+  z-index: 10;
+  display: none;
+}
+
+#gameoutput figure {
+  width: 90px;
+  height: 90px;
+  border: 1px solid #000;
+  background: #fff;
+  float: left;
+  margin: 5px;
+}
+
+#gameoutput>p {
+  background: #000;
+  width: 300px;
+  height: 90px;
+  margin: 5px auto;
+  color: #fff;
+}
+
 
 /* -------------------------scroll bar */
 

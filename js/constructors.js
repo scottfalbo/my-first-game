@@ -105,17 +105,17 @@ function ItemMaker(){
 ContainerMaker.prototype.react = function(event){
   if(event === 'open' || event === 'use'){
     if (this.opened === true){
-      console.log('already open');
+      gameOutput(`You've already opened this ${this.type}`);
     } else {
       this.imgSrc1 = this.imgSrc2;
       thePlayer.gold += this.contents[1];
-      console.log(`You open the ${this.type} and find ${this.contents[1]} ${this.contents[0]}.`);
+      gameOutput(`You open the ${this.type} and find ${this.contents[1]} ${this.contents[0]}.`);
       this.opened = true;
       loadZone('scene01');
     }
   } else if (event === 'talk'){
-    console.log(`You talk to the ${this.type}, it doesn't respond.`);
+    gameOutput(`You talk to the ${this.type}, it doesn't respond.`);
   } else if (event === 'inspect'){
-    console.log(`You search the area and find a ${this.type}.`);
+    gameOutput(`You search the area and find a ${this.type}.`);
   }
 };
