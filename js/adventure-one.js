@@ -185,6 +185,10 @@ function createScene04(){
     thePlayer.mapLoc[0] = 850;
     loadZone('scene02');
   });
+  //---------------------------------------- containers------
+  var imgSrc1 = document.getElementById('chest');
+  var imgSrc2 = document.getElementById('chest-open');
+  new ContainerMaker(800, 150, 50, 50, imgSrc1, imgSrc2, 'chest', ['gold', 75]);
   //-----------------------------------------create zone object
   new ZoneMaker('scene04', mapArray, passThruArray, npcArray, containerArray, eventArray, itemArray);
 }

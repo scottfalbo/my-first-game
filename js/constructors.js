@@ -111,7 +111,7 @@ ContainerMaker.prototype.react = function(event){
       thePlayer.gold += this.contents[1];
       gameOutput(`You open the ${this.type} and find ${this.contents[1]} ${this.contents[0]}.`);
       this.opened = true;
-      loadZone('scene01');
+      theZone.drawImage(this.imgSrc1, this.x, this.y, this.w, this.h);
     }
   } else if (event === 'talk'){
     gameOutput(`You talk to the ${this.type}, it doesn't respond.`);
